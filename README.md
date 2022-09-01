@@ -9,6 +9,11 @@ npm uninstall @nestjs/platform-express #replace express with fastify
 
 #Generate our first Schemas
 npx nx g @nrwl/nest:resource -p my-backend --directory="app/resources" --type="graphql-code-first" --crud --name user
+
+
+#Set up db workspace and install prisma
+npx nx g @nrwl/nest:lib my-backend/data-access-db --buildable --tags "scope:my-backend"
+cd libs/my-backend/data-access-db/src/lib && npx prisma init
 ```
 ```
 
