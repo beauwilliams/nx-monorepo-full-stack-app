@@ -28,6 +28,11 @@ DATABASE_URL=postgresql://postgres:mysecretpassword@localhost:5433/postgres?sche
 #Install env-cmd for using the .local.env file
 npm i -D env-cmd
 
+#run npm run db:up
+
+#Install prisma client
+just install @prisma/client
+
 ```
 ```
 
