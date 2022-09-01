@@ -51,7 +51,6 @@ generator nestgraphql {
 npx nx g @nrwl/nest:lib my-backend/generated/db-types --buildable --tags "scope:my-backend"
 
 ```
-```
 
 
 ## Workspace

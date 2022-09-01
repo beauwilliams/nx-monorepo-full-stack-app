@@ -17,6 +17,9 @@
     "paths": {
       "@my-full-stack-app/my-backend/data-access-db": [
         "libs/my-backend/data-access-db/src/index.ts"
+      ],
+      "@my-full-stack-app/my-backend/generated/db-types": [
+        "libs/my-backend/generated/db-types/src/index.ts"
       ]
     }
   },

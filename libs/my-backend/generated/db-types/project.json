@@ -1,0 +1,34 @@
+{
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/my-backend/generated/db-types/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/my-backend/generated/db-types",
+        "tsConfig": "libs/my-backend/generated/db-types/tsconfig.lib.json",
+        "packageJson": "libs/my-backend/generated/db-types/package.json",
+        "main": "libs/my-backend/generated/db-types/src/index.ts",
+        "assets": ["libs/my-backend/generated/db-types/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/my-backend/generated/db-types/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/my-backend/generated/db-types"],
+      "options": {
+        "jestConfig": "libs/my-backend/generated/db-types/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["scope:my-backend"]
+}
