@@ -15,7 +15,7 @@
     "db:studio": "env-cmd --no-override -f .local.env npx prisma studio"
   },
   "prisma": {
-    "schema": "libs/my-backend/data-access-db-src/lib/schema.prisma"
+    "schema": "libs/my-backend/data-access-db/src/lib/schema.prisma"
   },
   "private": true,
   "dependencies": {
