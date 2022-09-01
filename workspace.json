@@ -2,6 +2,7 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "my-backend": "apps/my-backend"
+    "my-backend": "apps/my-backend",
+    "my-backend-data-access-db": "libs/my-backend/data-access-db"
   }
 }

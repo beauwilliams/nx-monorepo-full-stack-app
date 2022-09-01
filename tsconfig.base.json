@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@my-full-stack-app/my-backend/data-access-db": [
+        "libs/my-backend/data-access-db/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
