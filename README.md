@@ -1,9 +1,15 @@
 #  nx-monorepo-full-stack-web-app
 
 ```bash
-npx create-nx-workspace my-full-stack-app --preset=nest --tags "scope:backend"
+npx create-nx-workspace my-full-stack-app --preset=nest --tags "scope:my-backend"
 npm i @nestjs/platform-fastify @nestjs/graphql @nestjs/mercurius graphql mercurius
 npm uninstall @nestjs/platform-express #replace express with fastify
+
+#Set up app module ts to use mercurius/graphql
+
+#Generate our first Schemas
+npx nx g @nrwl/nest:resource -p my-backend --directory="app/resources" --type="graphql-code-first" --crud --name user
+```
 ```
 
 
