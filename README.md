@@ -28,10 +28,27 @@ DATABASE_URL=postgresql://postgres:mysecretpassword@localhost:5433/postgres?sche
 #Install env-cmd for using the .local.env file
 npm i -D env-cmd
 
-#run npm run db:up
+#Initialise db with migrations
+npm run db:up
+
+#create basic user model in the prisma.schema
+
+#Re-Initialise db with migrations to confirm its working
+npm run db:up
 
 #Install prisma client
 just install @prisma/client
+
+
+#create a generator for graphQL in the prisma.schema
+generator nestgraphql {
+    provider                = "node node_modules/prisma-nestjs-graphql"
+    output                  = "../../../generated/db-types/src"
+    #rest of code ....
+}
+
+#Create lib for db types
+npx nx g @nrwl/nest:lib my-backend/generated/db-types --buildable --tags "scope:my-backend"
 
 ```
 ```
