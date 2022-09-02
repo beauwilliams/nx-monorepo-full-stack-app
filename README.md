@@ -19,15 +19,15 @@ A backend workspace with:
 - NodeJs, 100% typescript and typed
 - Postgresql db
 - Docker-compose for db migrations
-- Prisma ORM to handle migrations
+- Prisma database ORM to handle migrations, view database in web browser and more etc
 - Auto-generated graphql endpoints with validation via prisma
-- Fastify server instead of express for speed 
+- Fastify server instead of express for speed
 - Mercurius, a graphql adapter for fastify
 - Basic CORS support using fastify builtin
 - Sane http header security policy defaults via helmet, auto-disabled in dev mode
 
 ```bash
-#Install basic modules needed for backend using 
+#Install basic modules needed for backend using
 npx create-nx-workspace my-full-stack-app --preset=nest --tags "scope:my-backend"
 npm i @nestjs/platform-fastify @nestjs/graphql @nestjs/mercurius graphql mercurius
 npm uninstall @nestjs/platform-express #replace express with fastify
@@ -125,7 +125,8 @@ https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/105a072a9f2939
 npm run db:up
 
 
-#Test its all working visiting localhost/graphql e.g such as below query to see if validation works
+#Test its all working visiting http://localhost:3333/graphiql# and trying some queries
+#I should be rejected with BadRequestException
 mutation {
   createUser(data:{email: "tes", password: "test123s", name: "t"}) {
     id
@@ -133,6 +134,18 @@ mutation {
     email
   }
 }
+#I should pass and return back the data with the id
+mutation {
+  createUser(data:{email: "test@mail.com", password: "test123456", name: "test"}) {
+    id
+    name
+    email
+  }
+}
+
+
+#Create a script to view the database from a web browser [package.json]
+"db:studio": "env-cmd --no-override -f .local.env npx prisma studio"
 
 
 #Enable CORS  - this is not a production grade CORS setup yet [main.ts]
@@ -159,10 +172,45 @@ app.use(
 
 
 ## Setup Frontend
-TODO
+
+A frontend workspace with:
+- NextJS
+- Auto-code-gen of graphql queries
+- End to end typed
+- Serverside rendering of database queries
+
+```bash
+#Install nextjs using nx to generate the workspace, selecting css, or other option if preferred
+npm i --save-dev @nrwl/next
+npx nx g @nrwl/next:app my-frontend
+
+#Install graphql frontend client
+npm i urql
+
+#Install client side graphql code generation modules
+npm i @graphql-codegen/cli @graphql-codegen/near-operation-file-preset @graphql-codegen/typed-document-node @graphql-codegen/typescript @graphql-codegen/typescript-operations @graphql-codegen/typescript-urql graphql-codegen
 
 
-## Setup Workspace Dependency Isolation 
+#Install concurrently which we will use to run backend and frontend in one command during development
+npm i --save-dev concurrently
+
+
+#Set up scripts in package.json to run both at once [package.json]
+"start:dev": "env-cmd -f .local.env concurrently --kill-others \"npm:db:up\" \"npm:dev:my-frontend\" \"npm:dev:my-backend\" ",
+"dev:my-backend": "nx serve my-backendi",
+"dev:my-frontend": "nx serve my-frontend",
+
+
+#Set up scipts to perform graphql code generation
+"gen:gql": "graphql-codegen --config tools/gql-codegen/gql-codegen.yml --watch"
+
+
+#Create a library for the graphql code generation
+npx nx g @nrwl/node:lib my-client/generated/graphql-types --tags "scope:my-client"
+```
+
+
+## Setup Workspace Dependency Isolation
 TODO
 
 
