@@ -214,11 +214,20 @@ https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/a3565eb3b87d14
 
 
 #Set up scripts to perform graphql code generation
-"gen:gql": "graphql-codegen --config tools/gql-codegen/gql-codegen.yml --watch"
+"gen:gql": "graphql-codegen --config tools/gql-client-side-code-generation/gql-client-side-code-generation.yml --watch"
 
 
 #Create a library for the graphql code generation
 npx nx g @nrwl/node:lib my-client/generated/graphql-types --tags "scope:my-client"
+
+#Create a tools dir and yaml file for graph-ql-code-gen config
+mkdir ./tools/gql-client-side-code-generation/
+touch ./tools/gql-client-side-code-generation/gql-client-side-code-generation.yml
+
+#Create config for client side graphql endpoint hooks code gen specifying files to parse
+documents:
+  - 'apps/**/*gql.ts'
+  - 'libs/**/*gql.ts'
 ```
 
 
