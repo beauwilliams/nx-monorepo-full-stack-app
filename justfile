@@ -45,6 +45,9 @@ whoami $name:
 install *PACKAGES:
     @#Recipe param as list of packages
     @npm install {{PACKAGES}}
+install-save-dev *PACKAGES:
+    @#Recipe param as list of packages
+    @npm install --save-dev {{PACKAGES}}
 start:
     @npm run start
 start-backend:
