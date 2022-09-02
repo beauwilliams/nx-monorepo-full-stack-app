@@ -213,21 +213,42 @@ npm i --save-dev concurrently
 https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/a3565eb3b87d14af93c90cc235d60371a6b5c378
 
 
-#Set up scripts to perform graphql code generation
+#Set up scripts to perform graphql code generation [package.json]
 "gen:gql": "graphql-codegen --config tools/gql-client-side-code-generation/gql-client-side-code-generation.yml --watch"
 
 
 #Create a library for the graphql code generation
 npx nx g @nrwl/node:lib my-client/generated/graphql-types --tags "scope:my-client"
 
+
 #Create a tools dir and yaml file for graph-ql-code-gen config
 mkdir ./tools/gql-client-side-code-generation/
 touch ./tools/gql-client-side-code-generation/gql-client-side-code-generation.yml
 
-#Create config for client side graphql endpoint hooks code gen specifying files to parse
+
+#Create config for client side graphql endpoint hooks code gen specifying files included to parse [/tools/gql-client-side-code-generation/gql-client-side-code-generation.yml]
+https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/112e602f4a2e1458e43333bc9a1270c4e914d86a
+#..rest of file in commit
 documents:
   - 'apps/**/*gql.ts'
   - 'libs/**/*gql.ts'
+
+
+#Create a client side api dir and gql.ts file to store our first query
+mkdir ./apps/my-frontend/api/user/
+touch ./apps/my-frontend/api/user/user.gql.ts
+
+
+#Create our first query used to auto-generate react hooks to fetch data using graphql [/apps/my-frontend/api/user/user.gql.ts]
+import { gql } from 'urql'
+
+const GET_USER = gql`
+  query GetUser($args: UserWhereUniqueInput!) {
+    user(where: $args) {
+      name
+      email
+    }
+  }
 ```
 
 
