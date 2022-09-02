@@ -88,6 +88,14 @@ mutation {
 }
 
 
+#Enable CORS  - this is not a production grade CORS setup yet
+app.enableCors({
+  origin: true,
+  credentials: true,
+});
+
+
+
 ```
 
 

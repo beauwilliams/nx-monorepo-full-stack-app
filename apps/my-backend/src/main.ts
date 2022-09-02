@@ -16,9 +16,14 @@ async function bootstrap() {
       skipMissingProperties: true,
       whitelist: true,
       transform: true,
-      transformOptions: { enableImplicitConversion: true }
+      transformOptions: { enableImplicitConversion: true },
     })
-  )
+  );
+  //NOTE: This is not production grade CORS setup yet
+  app.enableCors({
+    origin: true,
+    credentials: true,
+  });
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3333;
