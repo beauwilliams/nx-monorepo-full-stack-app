@@ -10,7 +10,7 @@
     "DATABASE": "-----------------------------------------------------------------------------------------------",
     "db:up": "npm run db:docker && npm run db:dev-migrate && npm run db:create-client -- --watch",
     "db:docker": "docker-compose -f tools/docker-env/dev.docker-compose.yml up -d --no-recreate --remove-orphans",
-    "db:create-client": "prisma generate",
+    "db:create-client": "npx prisma generate",
     "db:dev-migrate": "env-cmd --no-override -f .local.env npx prisma migrate dev",
     "db:studio": "env-cmd --no-override -f .local.env npx prisma studio"
   },
@@ -29,6 +29,7 @@
     "class-validator": "^0.13.2",
     "graphql": "^16.6.0",
     "mercurius": "^10.5.0",
+    "prisma-nestjs-graphql": "^17.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",
     "tslib": "^2.3.0"
