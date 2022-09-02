@@ -47,6 +47,8 @@ install *PACKAGES:
     @npm install {{PACKAGES}}
 start:
     @npm run start
+dbup:
+    @npm run db:up
 
 
 # Hidden Recipes
