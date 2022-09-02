@@ -1,4 +1,14 @@
-#  nx-monorepo-full-stack-web-app
+# nx-monorepo-full-stack-web-app
+
+## Notable app features
+
+- End to end typed
+- Sane defaults
+- Workspace management
+- Enforceable static workspace dependency isolation (internal libs/apps cant inherit classes from other specified)
+- Dependency graph
+- Auto-code-gen on backend from schemas
+- Auto-code-gen on frontend from auto-generated backend endpoints
 
 ## Steps to build the app
 
@@ -28,7 +38,7 @@ https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/e12c03a0e02224
 
 
 
-#Generate our first Schemas
+#Generate our first schemas
 npx nx g @nrwl/nest:resource -p my-backend --directory="app/resources" --type="graphql-code-first" --crud --name user
 
 
