@@ -21,6 +21,21 @@ cd libs/my-backend/data-access-db/src/lib && npx prisma init
 # Set up prisma in package json
 
 # Add docker commands to package json to launch DB
+"scripts": {
+    "start": "nx serve",
+    "start:backend": "nx serve my-backend",
+    "build": "nx build",
+    "test": "nx test",
+    "DATABASE": "-----------------------------------------------------------------------------------------------",
+    "db:up": "npm run db:docker && npm run db:dev-migrate && npm run db:create-client -- --watch",
+    "db:docker": "docker-compose -f tools/docker-env/dev.docker-compose.yml up -d --no-recreate --remove-orphans",
+    "db:create-client": "npx prisma generate",
+    "db:dev-migrate": "env-cmd --no-override -f .local.env npx prisma migrate dev",
+    "db:studio": "env-cmd --no-override -f .local.env npx prisma studio"
+  },
+  "prisma": {
+    "schema": "libs/my-backend/data-access-db/src/lib/schema.prisma"
+  }
 
 # Add .local.env with DATABASE env like below example
 DATABASE_URL=postgresql://postgres:mysecretpassword@localhost:5433/postgres?schema=public
@@ -49,6 +64,13 @@ generator nestgraphql {
 
 #Create lib for db types
 npx nx g @nrwl/nest:lib my-backend/generated/db-types --buildable --tags "scope:my-backend"
+
+
+#Re-Initialise db with migrations to confirm its working
+npm run db:up
+
+# Install class transformer
+npm i class-tranformer
 
 ```
 
@@ -86,7 +108,6 @@ https://cloud.nx.app/orgs/workspace-setup?accessToken=MjExNDZjMzktY2YyMS00YTUzLW
 
 This project was generated using [Nx](https://nx.dev).
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
 
 🔎 **Smart, Fast and Extensible Build System**
 
@@ -167,7 +188,6 @@ Visit the [Nx Documentation](https://nx.dev) to learn more.
 
 ### Distributed Computation Caching & Distributed Task Execution
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
 
 Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
 
