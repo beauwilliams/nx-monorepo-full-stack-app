@@ -209,6 +209,10 @@ npm i --save-dev concurrently
 "dev:my-frontend": "nx serve my-frontend",
 
 
+#Test our new frontend is working visiting http://localhost:4200 and commit changes afterward
+https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/a3565eb3b87d14af93c90cc235d60371a6b5c378
+
+
 #Set up scripts to perform graphql code generation
 "gen:gql": "graphql-codegen --config tools/gql-codegen/gql-codegen.yml --watch"
 
