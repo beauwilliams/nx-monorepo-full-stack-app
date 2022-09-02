@@ -249,6 +249,10 @@ const GET_USER = gql`
       email
     }
   }
+
+
+#Test out autogeneration of client side graphql hooks
+npm run gen:gql
 ```
 
 
