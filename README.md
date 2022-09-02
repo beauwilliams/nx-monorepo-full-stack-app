@@ -1,5 +1,18 @@
 #  nx-monorepo-full-stack-web-app
 
+## Setup backend
+
+A backend workspace with:
+- NodeJs, 100% typescript and typed
+- Postgresql db
+- Docker-compose for db migrations
+- Prisma ORM to handle migrations
+- Auto-generated graphql endpoints with validation via prisma
+- Fastify server instead of express for speed with 
+- Mercurius, a graphql adapter for fastify
+- Basic CORS support using fastify builtin
+- Sane http header policy defaults via helmet
+
 ```bash
 #Install basic modules needed for backend using 
 npx create-nx-workspace my-full-stack-app --preset=nest --tags "scope:my-backend"
