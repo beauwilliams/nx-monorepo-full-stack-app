@@ -33,21 +33,17 @@ npm i @nestjs/platform-fastify @nestjs/graphql @nestjs/mercurius graphql mercuri
 npm uninstall @nestjs/platform-express #replace express with fastify
 
 
-
 #Set up app module ts to use mercurius/graphql and swap express for fastify [app.module.ts] [main.ts]
 https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/e12c03a0e02224d3963cc147e7293d970ea0709f
-
 
 
 #Generate our first schemas
 npx nx g @nrwl/nest:resource -p my-backend --directory="app/resources" --type="graphql-code-first" --crud --name user
 
 
-
 #Set up db workspace and init prisma
 npx nx g @nrwl/nest:lib my-backend/data-access-db --buildable --tags "scope:my-backend"
 cd libs/my-backend/data-access-db/src/lib && npx prisma init
-
 
 
 #Set up docker compose file with data-access-db [docker-compose.yml]
@@ -58,35 +54,28 @@ https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/cb447f213061e4
 https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/36c21e66c671b99db7e78f4fe3b79919f0e7c2d1
 
 
-
 # Add .local.env with DATABASE env like below example [.local.env]
 DATABASE_URL=postgresql://postgres:mysecretpassword@localhost:5433/postgres?schema=public
-
 
 
 #Install env-cmd for using the .local.env file
 npm i -D env-cmd
 
 
-
 #Initialise db with migrations
 npm run db:up
-
 
 
 #create basic user model [prisma.schema]
 https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/64e69ed517206b7a7a14451d7a033582f49e5098
 
 
-
 #Re-Initialise db with migrations to confirm its working
 npm run db:up
 
 
-
 #Install prisma client
 npm install @prisma/client prisma
-
 
 
 #create a generator for graphQL [prisma.schema]
@@ -98,31 +87,25 @@ generator nestgraphql {
 }
 
 
-
 #Create lib for db types
 https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/fa1198632460ad09dd6e657e04c750a5285f0f1e
 npx nx g @nrwl/nest:lib my-backend/generated/db-types --buildable --tags "scope:my-backend"
-
 
 
 #Cleanup and remove unneeded files
 https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/bdeaed5ff9328ac58f752b080e41e52ce364aa59
 
 
-
 # Install class transformer and class validator plus nestjs plugin
 npm i class-transformer class-validator prisma-nestjs-graphql
-
 
 
 #Re-Initialise db with migrations to confirm its working
 npm run db:up
 
 
-
 #Clean up uneccessary files and create the user database service [user.*.ts]
 https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/cd4b2ae8a8b51cb3369c3dd4cf7899fd025cfb10
-
 
 
 #Create model with Validation using /// to denote validators [prisma.schema]
@@ -134,15 +117,12 @@ https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/c089e537d53187
 password String
 
 
-
 #Update schema and server to enable validation [main.ts] [prisma.schema]
 https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/105a072a9f2939410e455c1ad187902e1b9a08b1
 
 
-
 #Re-Initialise db with migrations to confirm its working
 npm run db:up
-
 
 
 #Test its all working visiting localhost/graphql e.g such as below query to see if validation works
@@ -155,13 +135,11 @@ mutation {
 }
 
 
-
 #Enable CORS  - this is not a production grade CORS setup yet [main.ts]
 app.enableCors({
   origin: true,
   credentials: true,
 });
-
 
 
 #Install helmet to set sane security defaults for http headers [main.ts]
@@ -178,6 +156,15 @@ app.use(
   })
 )
 ```
+
+
+## Setup Frontend
+TODO
+
+
+## Setup Workspace Dependency Isolation 
+TODO
+
 
 ## Application Architecture
 
