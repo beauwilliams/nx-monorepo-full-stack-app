@@ -6,12 +6,15 @@ import { Float } from '@nestjs/graphql';
 import { registerEnumType } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
 import { Type } from 'class-transformer';
+import { HideField } from '@nestjs/graphql';
+import * as Validator from 'class-validator';
 import { ID } from '@nestjs/graphql';
 
 export enum UserScalarFieldEnum {
     id = "id",
     email = "email",
-    name = "name"
+    name = "name",
+    password = "password"
 }
 
 export enum TransactionIsolationLevel {
@@ -618,6 +621,8 @@ export class UserCountAggregateInput {
     @Field(() => Boolean, {nullable:true})
     name?: true;
     @Field(() => Boolean, {nullable:true})
+    password?: true;
+    @Field(() => Boolean, {nullable:true})
     _all?: true;
 }
 
@@ -629,6 +634,8 @@ export class UserCountAggregate {
     email!: number;
     @Field(() => Int, {nullable:false})
     name!: number;
+    @HideField()
+    password!: number;
     @Field(() => Int, {nullable:false})
     _all!: number;
 }
@@ -641,6 +648,8 @@ export class UserCountOrderByAggregateInput {
     email?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    password?: keyof typeof SortOrder;
 }
 
 @InputType()
@@ -648,17 +657,35 @@ export class UserCreateManyInput {
     @Field(() => Int, {nullable:true})
     id?: number;
     @Field(() => String, {nullable:false})
+    @Validator.IsEmail()
     email!: string;
     @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
     name?: string;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(8)
+    password!: string;
 }
 
 @InputType()
 export class UserCreateInput {
     @Field(() => String, {nullable:false})
+    @Validator.IsEmail()
     email!: string;
     @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
     name?: string;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(8)
+    password!: string;
 }
 
 @ArgsType()
@@ -693,9 +720,15 @@ export class UserGroupBy {
     @Field(() => Int, {nullable:false})
     id!: number;
     @Field(() => String, {nullable:false})
+    @Validator.IsEmail()
     email!: string;
     @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
     name?: string;
+    @HideField()
+    password!: string;
     @Field(() => UserCountAggregate, {nullable:true})
     _count?: InstanceType<typeof UserCountAggregate>;
     @Field(() => UserAvgAggregate, {nullable:true})
@@ -716,6 +749,8 @@ export class UserMaxAggregateInput {
     email?: true;
     @Field(() => Boolean, {nullable:true})
     name?: true;
+    @Field(() => Boolean, {nullable:true})
+    password?: true;
 }
 
 @ObjectType()
@@ -723,9 +758,15 @@ export class UserMaxAggregate {
     @Field(() => Int, {nullable:true})
     id?: number;
     @Field(() => String, {nullable:true})
+    @Validator.IsEmail()
     email?: string;
     @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
     name?: string;
+    @HideField()
+    password?: string;
 }
 
 @InputType()
@@ -736,6 +777,8 @@ export class UserMaxOrderByAggregateInput {
     email?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    password?: keyof typeof SortOrder;
 }
 
 @InputType()
@@ -746,6 +789,8 @@ export class UserMinAggregateInput {
     email?: true;
     @Field(() => Boolean, {nullable:true})
     name?: true;
+    @Field(() => Boolean, {nullable:true})
+    password?: true;
 }
 
 @ObjectType()
@@ -753,9 +798,15 @@ export class UserMinAggregate {
     @Field(() => Int, {nullable:true})
     id?: number;
     @Field(() => String, {nullable:true})
+    @Validator.IsEmail()
     email?: string;
     @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
     name?: string;
+    @HideField()
+    password?: string;
 }
 
 @InputType()
@@ -766,6 +817,8 @@ export class UserMinOrderByAggregateInput {
     email?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    password?: keyof typeof SortOrder;
 }
 
 @InputType()
@@ -776,6 +829,8 @@ export class UserOrderByWithAggregationInput {
     email?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    password?: keyof typeof SortOrder;
     @Field(() => UserCountOrderByAggregateInput, {nullable:true})
     _count?: InstanceType<typeof UserCountOrderByAggregateInput>;
     @Field(() => UserAvgOrderByAggregateInput, {nullable:true})
@@ -796,6 +851,8 @@ export class UserOrderByWithRelationInput {
     email?: keyof typeof SortOrder;
     @Field(() => SortOrder, {nullable:true})
     name?: keyof typeof SortOrder;
+    @Field(() => SortOrder, {nullable:true})
+    password?: keyof typeof SortOrder;
 }
 
 @InputType()
@@ -812,6 +869,8 @@ export class UserScalarWhereWithAggregatesInput {
     email?: InstanceType<typeof StringWithAggregatesFilter>;
     @Field(() => StringNullableWithAggregatesFilter, {nullable:true})
     name?: InstanceType<typeof StringNullableWithAggregatesFilter>;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    password?: InstanceType<typeof StringWithAggregatesFilter>;
 }
 
 @InputType()
@@ -837,9 +896,18 @@ export class UserUncheckedCreateInput {
     @Field(() => Int, {nullable:true})
     id?: number;
     @Field(() => String, {nullable:false})
+    @Validator.IsEmail()
     email!: string;
     @Field(() => String, {nullable:true})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(3)
     name?: string;
+    @Field(() => String, {nullable:false})
+    @Validator.IsString()
+    @Validator.MaxLength(100)
+    @Validator.MinLength(8)
+    password!: string;
 }
 
 @InputType()
@@ -850,6 +918,8 @@ export class UserUncheckedUpdateManyInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 
 @InputType()
@@ -860,6 +930,8 @@ export class UserUncheckedUpdateInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 
 @InputType()
@@ -868,6 +940,8 @@ export class UserUpdateManyMutationInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 
 @InputType()
@@ -876,6 +950,8 @@ export class UserUpdateInput {
     email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     name?: InstanceType<typeof NullableStringFieldUpdateOperationsInput>;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    password?: InstanceType<typeof StringFieldUpdateOperationsInput>;
 }
 
 @InputType()
@@ -883,6 +959,7 @@ export class UserWhereUniqueInput {
     @Field(() => Int, {nullable:true})
     id?: number;
     @Field(() => String, {nullable:true})
+    @Validator.IsEmail()
     email?: string;
 }
 
@@ -900,6 +977,8 @@ export class UserWhereInput {
     email?: InstanceType<typeof StringFilter>;
     @Field(() => StringNullableFilter, {nullable:true})
     name?: InstanceType<typeof StringNullableFilter>;
+    @Field(() => StringFilter, {nullable:true})
+    password?: InstanceType<typeof StringFilter>;
 }
 
 @ObjectType()
@@ -910,4 +989,6 @@ export class User {
     email!: string;
     @Field(() => String, {nullable:true})
     name!: string | null;
+    @HideField()
+    password!: string;
 }
