@@ -5,10 +5,10 @@ services:
     ports:
       - '5433:5432'
     volumes:
-      - full-stack-db:/var/lib/postgresql/data
+      - my-full-stack-app-db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: mysecretpassword
       PGDATA: /var/lib/postgresql/data/data
 
 volumes:
-  full-stack-db:
+  my-full-stack-app-db:
