@@ -51,7 +51,8 @@ start-backend:
     @npm run start:backend
 dbup:
     @npm run db:up
-
+dependency-graph:
+    @npx nx graph
 
 
 # Hidden Recipes

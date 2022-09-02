@@ -78,7 +78,15 @@ https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/105a072a9f2939
 #Re-Initialise db with migrations to confirm its working
 npm run db:up
 
-#Test its all working visiting localhost/graphql
+#Test its all working visiting localhost/graphql e.g such as below query to see if validation works
+mutation {
+  createUser(data:{email: "tes", password: "test123s", name: "t"}) {
+    id
+    name
+    email
+  }
+}
+
 
 ```
 
