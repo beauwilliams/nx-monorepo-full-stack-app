@@ -31,8 +31,21 @@ generator nestgraphql {
 }
 
 
+//NOTE: Here we use custom validation, refer to prisma docs for more info
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-}
+    id    Int     @id @default(autoincrement())
+
+    /// @Validator.IsEmail()
+    email String  @unique
+
+    /// @Validator.IsString()
+    /// @Validator.MaxLength(100)
+    /// @Validator.MinLength(3)
+    name  String?
+
+    /// @Validator.IsString()
+    /// @Validator.MaxLength(100)
+    /// @Validator.MinLength(8)
+    /// @HideField()
+    password String
+  }
