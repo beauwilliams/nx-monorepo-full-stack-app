@@ -29,6 +29,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "graphql": "^16.6.0",
+    "helmet": "^6.0.0",
     "mercurius": "^10.5.0",
     "prisma-nestjs-graphql": "^17.0.1",
     "reflect-metadata": "^0.1.13",

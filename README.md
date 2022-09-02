@@ -94,6 +94,19 @@ app.enableCors({
   credentials: true,
 });
 
+#Install helmet to set sane security defaults for http headers
+import helmet from 'helmet'
+const isProduction = process.env.NODE_ENV === 'production'
+const developmentContentSecurityPolicy = {
+  directives: {
+    scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://unpkg.com/']
+  }
+}
+app.use(
+  helmet({
+    contentSecurityPolicy: isProduction ? undefined : developmentContentSecurityPolicy
+  })
+)
 
 
 ```
