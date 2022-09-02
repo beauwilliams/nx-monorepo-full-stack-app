@@ -11,7 +11,7 @@ A backend workspace with:
 - Fastify server instead of express for speed 
 - Mercurius, a graphql adapter for fastify
 - Basic CORS support using fastify builtin
-- Sane http header policy defaults via helmet
+- Sane http header security policy defaults via helmet, auto-disabled in dev mode
 
 ```bash
 #Install basic modules needed for backend using 
