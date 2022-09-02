@@ -66,7 +66,7 @@ npm i -D env-cmd
 npm run db:up
 
 
-#create basic user model [prisma.schema]
+#Create basic user model [prisma.schema]
 https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/64e69ed517206b7a7a14451d7a033582f49e5098
 
 
@@ -96,7 +96,7 @@ npx nx g @nrwl/nest:lib my-backend/generated/db-types --buildable --tags "scope:
 https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/bdeaed5ff9328ac58f752b080e41e52ce364aa59
 
 
-# Install class transformer and class validator plus nestjs plugin
+#Install class transformer and class validator plus nestjs plugin
 npm i class-transformer class-validator prisma-nestjs-graphql
 
 
@@ -184,8 +184,16 @@ A frontend workspace with:
 npm i --save-dev @nrwl/next
 npx nx g @nrwl/next:app my-frontend
 
+
 #Install graphql frontend client
 npm i urql
+#NOTE: After installing urql I got upstream dependency conflict. Possible solutions are..
+#Use legacy flag, I chose to use this and stick with npm for now, either way the same problem persists, yarn just hides it better
+#I chose to update my justfile so we can run 'just install $package' and worry about dependency conflicts later without forgetting about it
+npm install --legacy-peer-deps
+#Or switch to yarn, which tends to handle this issue better without crashing (also fixed issue for me)
+rm package-lock.json && yarn install
+
 
 #Install client side graphql code generation modules
 npm i @graphql-codegen/cli @graphql-codegen/near-operation-file-preset @graphql-codegen/typed-document-node @graphql-codegen/typescript @graphql-codegen/typescript-operations @graphql-codegen/typescript-urql graphql-codegen
@@ -201,7 +209,7 @@ npm i --save-dev concurrently
 "dev:my-frontend": "nx serve my-frontend",
 
 
-#Set up scipts to perform graphql code generation
+#Set up scripts to perform graphql code generation
 "gen:gql": "graphql-codegen --config tools/gql-codegen/gql-codegen.yml --watch"
 
 

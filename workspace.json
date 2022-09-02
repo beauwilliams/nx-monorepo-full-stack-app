@@ -4,6 +4,8 @@
   "projects": {
     "my-backend": "apps/my-backend",
     "my-backend-data-access-db": "libs/my-backend/data-access-db",
-    "my-backend-generated-db-types": "libs/my-backend/generated/db-types"
+    "my-backend-generated-db-types": "libs/my-backend/generated/db-types",
+    "my-frontend": "apps/my-frontend",
+    "my-frontend-e2e": "apps/my-frontend-e2e"
   }
 }

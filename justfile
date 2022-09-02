@@ -44,14 +44,18 @@ whoami $name:
     echo $name
 install *PACKAGES:
     @#Recipe param as list of packages
-    @npm install {{PACKAGES}}
+    @echo NOTE: Using legacy peer dependencies flag due to dep conflict with ts-jest and babel
+    npm install --legacy-peer-deps {{PACKAGES}}
 install-save-dev *PACKAGES:
     @#Recipe param as list of packages
-    @npm install --save-dev {{PACKAGES}}
+    @echo NOTE: Using legacy peer dependencies flag due to dep conflict with ts-jest and babel
+    npm install --legacy-peer-deps --save-dev {{PACKAGES}}
 start:
-    @npm run start
+    @npm run start:dev
 start-backend:
-    @npm run start:backend
+    @npm run dev:my-backend
+start-frontend:
+    @npm run dev:ny-frontend
 dbup:
     @npm run db:up
 dependency-graph:
