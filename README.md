@@ -9,6 +9,7 @@
 - Dependency graph
 - Auto-code-gen on backend from schemas
 - Auto-code-gen on frontend from auto-generated backend endpoints
+- Auto-code-gen of boilerplate for libraries, apps, react components and more
 
 ## Steps to build the app
 
