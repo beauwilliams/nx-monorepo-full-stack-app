@@ -6,7 +6,7 @@ documents:
   - 'libs/**/*gql.ts'
 
 generates:
-  libs/my-client/generated/graphql-types/src/lib/types.ts:
+  libs/my-client/generated/graphql-types/src/lib/my-client-generated-graphql-types.ts:
     - typescript
   libs/:
     preset: near-operation-file
