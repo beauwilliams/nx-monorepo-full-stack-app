@@ -185,7 +185,7 @@ app.use(
 
 A frontend workspace with:
 - NextJS
-- Auto-code-gen of graphql queries
+- Auto-code-gen of react hooks to fetch data from graphql
 - End to end typed
 - Serverside rendering of database queries
 
