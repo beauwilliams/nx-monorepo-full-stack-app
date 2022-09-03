@@ -55,6 +55,7 @@ async function bootstrap() {
   await app.listen(port);
   Logger.log(
     `🚀 Server is running on: http://localhost:${port}/${globalPrefix}`,
+    `🚀 Graphql endpoint is running on: http://localhost:${port}/graphql`,
     `🚀 Graphql playground is running on: http://localhost:${port}/graphiql`
   );
 }

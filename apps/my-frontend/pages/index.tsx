@@ -1,6 +1,13 @@
+import { useGetUserQuery } from '../api/user/user.gql.gen';
+import { withApi } from '../api/my-client-api';
 import styles from './index.module.css';
 
 export function Index() {
+  const [{ data, fetching }] = useGetUserQuery({
+    variables: { args: { id: 1, email: 'test@mail.com' } },
+  });
+  console.log(data);
+
   /*
    * Replace the elements below with your own.
    *
@@ -12,7 +19,7 @@ export function Index() {
         <div className="container">
           <div id="welcome">
             <h1>
-              <span> Hello there, </span>
+              <span> Hello {fetching ? 'there' : data?.user?.name}</span>
               Welcome my-frontend 👋
             </h1>
           </div>
@@ -412,4 +419,4 @@ export function Index() {
   );
 }
 
-export default Index;
+export default withApi(Index);

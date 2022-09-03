@@ -144,6 +144,16 @@ mutation {
 }
 
 
+#Send a test query to check data is inserted correctly
+query {
+    user(where: {id: 1, email: "test@mail.com"}) {
+    id
+    name
+    email
+    }
+}
+
+
 #Create a script to view the database from a web browser [package.json]
 "db:studio": "env-cmd --no-override -f .local.env npx prisma studio"
 
@@ -253,6 +263,50 @@ const GET_USER = gql`
 
 #Test out autogeneration of client side graphql hooks
 npm run gen:gql
+
+
+#Create client side urql provider to server up the graphql api, later we will enhance this with SSR [apps/my-frontend/api/my-client-api.tsx]
+#...rest of code is in commit
+export const withApi = (Component: FC) => {
+  return function ApiWrappedComponent({ ...properties }) {
+    return (
+      <Provider value={clientApi}>
+        <Component {...properties} />
+      </Provider>
+    );
+  };
+};
+
+
+#Import the provider into our app to test, wrapping it in the urql-provider so we can fetch data in the app context [/apps/my-frontend/pages/index.ts]
+import { withApi } from '../api/my-client-api';
+#...rest of code
+export default withApi(Index)
+
+
+#Confirm our graphql hooks are working by logging a user from the database [/apps/my-frontend/pages/index.ts]
+import { useGetUserQuery } from '../api/user.gql.gen';
+export function Index() {
+  const [{ data, fetching }] = useGetUserQuery({
+    variables: { args: { id: 1, email: 'test@mail.com' } },
+  });
+  #log it
+  console.log(data);
+
+  #or render it
+  return (
+    <h1>
+        <span> Hello {fetching ? 'there' : data?.user?.name}</span>
+        Welcome my-frontend 👋
+    </h1>
+
+  )
+}
+
+
+# 🥳 We should now have data displayed from our backend on our frontend 🥳
+npm run start:dev
+
 ```
 
 
