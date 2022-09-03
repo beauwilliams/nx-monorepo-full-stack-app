@@ -250,6 +250,7 @@ touch ./apps/my-frontend/api/user/user.gql.ts
 
 
 #Create our first query used to auto-generate react hooks to fetch data using graphql [/apps/my-frontend/api/user/user.gql.ts]
+https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/285f265188591a92c3caed2c697de8345f402d0d
 import { gql } from 'urql'
 
 const GET_USER = gql`
@@ -267,6 +268,7 @@ npm run gen:gql
 
 #Create client side urql provider to server up the graphql api, later we will enhance this with SSR [apps/my-frontend/api/my-client-api.tsx]
 #...rest of code is in commit
+https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/b2c6e419acd3c8a1f496e5c2ac8e5c8a59c748ef
 export const withApi = (Component: FC) => {
   return function ApiWrappedComponent({ ...properties }) {
     return (
@@ -279,12 +281,14 @@ export const withApi = (Component: FC) => {
 
 
 #Import the provider into our app to test, wrapping it in the urql-provider so we can fetch data in the app context [/apps/my-frontend/pages/index.ts]
+https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/b2c6e419acd3c8a1f496e5c2ac8e5c8a59c748ef
 import { withApi } from '../api/my-client-api';
 #...rest of code
 export default withApi(Index)
 
 
 #Confirm our graphql hooks are working by logging a user from the database [/apps/my-frontend/pages/index.ts]
+https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/b2c6e419acd3c8a1f496e5c2ac8e5c8a59c748ef
 import { useGetUserQuery } from '../api/user.gql.gen';
 export function Index() {
   const [{ data, fetching }] = useGetUserQuery({
