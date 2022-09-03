@@ -60,6 +60,8 @@ dbup:
     @npm run db:up
 dependency-graph:
     @npx nx graph
+lint:
+    @npm run lint
 
 
 # Hidden Recipes
