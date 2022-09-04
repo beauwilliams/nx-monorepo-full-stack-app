@@ -17,6 +17,10 @@
                 "onlyDependOnLibsWithTags": ["scope:shared"]
               },
               {
+                "sourceTag": "scope:my-frontend",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:my-frontend"]
+              },
+              {
                 "sourceTag": "scope:my-backend",
                 "onlyDependOnLibsWithTags": ["scope:shared", "scope:my-backend"]
               },

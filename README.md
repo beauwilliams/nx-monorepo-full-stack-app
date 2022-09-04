@@ -355,6 +355,10 @@ This will tell eslint to emit errors when we break the constraints we have defin
         "onlyDependOnLibsWithTags": ["scope:shared"]
         },
         {
+        "sourceTag": "scope:my-frontend",
+        "onlyDependOnLibsWithTags": ["scope:shared", "scope:my-frontend"]
+        },
+        {
         "sourceTag": "scope:my-backend",
         "onlyDependOnLibsWithTags": ["scope:shared", "scope:my-backend"]
         },
@@ -376,7 +380,7 @@ npm run lint my-frontend
 
 #We should receive the response from the linter containing the below error
 /Users/admin/Git_Downloads/monorepo-full-stack-web-app/nx-monorepo-full-stack-app/apps/my-frontend/pages/index.tsx
-  4:1   error    A project without tags matching at least one constraint cannot depend on any libraries  @nrwl/nx/enforce-module-boundaries
+  4:1   error    A project tagged with "scope:my-frontend" can only depend on libs tagged with "scope:shared", "scope:my-frontend"  @nrwl/nx/enforce-module-boundaries
 ```
 
 
@@ -395,7 +399,7 @@ npm run lint my-frontend
 error  A project without tags matching at least one constraint cannot depend on any libraries  @nrwl/nx/enforce-module-boundaries
 ```
 
-Check that you have defined the scope tags properly in each library in your app, [like so](https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/f86a9b1cbb8bd33d1021c1af79e34a8bb1728298)
+Check that you have defined the scope tags properly in each library in your app, [like so](https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/f86a9b1cbb8bd33d1021c1af79e34a8bb1728298) [./project.json]
 
 ## Application Architecture
 
