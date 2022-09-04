@@ -1,4 +1,4 @@
-import * as Types from '@full-stack/my-client/generated/graphql-types';
+import * as Types from '@my-full-stack-app/my-client/generated/graphql-types';
 
 import { gql } from 'urql';
 import * as Urql from 'urql';
