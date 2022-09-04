@@ -192,7 +192,7 @@ A frontend workspace with:
 ```bash
 #Install nextjs using nx to generate the workspace, selecting css, or other option if preferred
 npm i --save-dev @nrwl/next
-npx nx g @nrwl/next:app my-frontend
+npx nx g @nrwl/next:app my-frontend --tags "scope:my-frontend"
 
 
 #Install graphql frontend client
@@ -215,7 +215,7 @@ npm i --save-dev concurrently
 
 #Set up scripts in package.json to run both at once [package.json]
 "start:dev": "env-cmd -f .local.env concurrently --kill-others \"npm:db:up\" \"npm:dev:my-frontend\" \"npm:dev:my-backend\" ",
-"dev:my-backend": "nx serve my-backendi",
+"dev:my-backend": "nx serve my-backend",
 "dev:my-frontend": "nx serve my-frontend",
 
 
@@ -316,19 +316,23 @@ npm run start:dev
 
 ## Setup Workspace Dependency Isolation
 
-### Steps
-Start by revieiwng the [docs here.](https://nx.dev/core-features/enforce-project-boundaries)
+### Defining boundaries with nx
 
-Let's check out our dependency graph using this commandnx.json
+Start by revieiwng the [docs here](https://nx.dev/core-features/enforce-project-boundaries)
+
+Let's check out our current dependency graph in a web browser using this command [http://127.0.0.1:4211/?]
+
 ```bash
 npx nx graph
 ```
 
 We can see here our dependency graphs are nicely laid out with our backend and frontend decoupled
+
 ![good](https://i.ibb.co/fXkSYNJ/Screen-Shot-2022-09-04-at-6-47-58-pm.png)
 
 
 Now let's try inheriting a library from our backend into our frontend to see how our dependency graph changes [my-frontend/pages/index.tsx]
+
 ```typescript
 import { CreateOneUserArgs, FindUniqueUserArgs, UpdateOneUserArgs, User } from "@my-full-stack-app/my-backend/generated/db-types";
 type test = CreateOneUserArgs
@@ -336,6 +340,7 @@ type test = CreateOneUserArgs
 
 
 As we can see, we now have an extra path in our dependency graph, coupling our frontend and backend
+
 ![bad](https://i.ibb.co/5KNpTCq/Screen-Shot-2022-09-04-at-6-45-40-pm.png)
 
 
@@ -348,7 +353,6 @@ This will tell eslint to emit errors when we break the constraints we have defin
     "error",
     {
     "allow": [],
-    // update depConstraints based on your tags
     "depConstraints": [
         {
         "sourceTag": "scope:shared",
@@ -376,9 +380,11 @@ This will tell eslint to emit errors when we break the constraints we have defin
 Run the linter to see if our boundaries are applied correctly, we should see an error
 ```bash
 #Lint the frontend scope
-npm run lint my-frontend
+
+npx nx lint my-frontend
 
 #We should receive the response from the linter containing the below error
+
 /Users/admin/Git_Downloads/monorepo-full-stack-web-app/nx-monorepo-full-stack-app/apps/my-frontend/pages/index.tsx
   4:1   error    A project tagged with "scope:my-frontend" can only depend on libs tagged with "scope:shared", "scope:my-frontend"  @nrwl/nx/enforce-module-boundaries
 ```
@@ -388,13 +394,18 @@ Let's delete the code we added earlier so that the frontend no longer inherits a
 
 Run the linter again and the error shown above should go away, there may still be some warnings, but we can fix those later
 
-Our dependency graph should now look that same as it did [earlier](https://i.ibb.co/fXkSYNJ/Screen-Shot-2022-09-04-at-6-47-58-pm.png)
+Our dependency graph should now look that same as it did [earlier](https://i.ibb.co/fXkSYNJ/Screen-Shot-2022-09-04-at-6-47-58-pm.png), perfect! We've now isolated our frontend from our backend successfully
 ```bash
-npm run lint my-frontend
+npx nx lint my-frontend
 ```
 
+Try lint the rest of your application, and get familiar with some of the other features of nx boundaries
 
-**NOTE** If you are getting this error
+```bash
+npx nx lint my-backend
+```
+
+**NOTE** If you are getting this error linting your app
 ```bash
 error  A project without tags matching at least one constraint cannot depend on any libraries  @nrwl/nx/enforce-module-boundaries
 ```
