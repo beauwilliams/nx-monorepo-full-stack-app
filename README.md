@@ -38,7 +38,7 @@ https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/e12c03a0e02224
 
 
 #Generate our first schemas
-npx nx g @nrwl/nest:resource -p my-backend --directory="app/resources" --type="graphql-code-first" --crud --name user
+npx nx g @nrwl/nest:resource -p my-backend --directory="app/resources" --type="graphql-code-first" --crud --name user --tags "scope:my-backend"
 
 
 #Set up db workspace and init prisma
@@ -315,8 +315,87 @@ npm run start:dev
 
 
 ## Setup Workspace Dependency Isolation
-TODO
 
+### Steps
+Start by revieiwng the [docs here.](https://nx.dev/core-features/enforce-project-boundaries)
+
+Let's check out our dependency graph using this commandnx.json
+```bash
+npx nx graph
+```
+
+We can see here our dependency graphs are nicely laid out with our backend and frontend decoupled
+![good](https://i.ibb.co/fXkSYNJ/Screen-Shot-2022-09-04-at-6-47-58-pm.png)
+
+
+Now let's try inheriting a library from our backend into our frontend to see how our dependency graph changes [my-frontend/pages/index.tsx]
+```typescript
+import { CreateOneUserArgs, FindUniqueUserArgs, UpdateOneUserArgs, User } from "@my-full-stack-app/my-backend/generated/db-types";
+type test = CreateOneUserArgs
+```
+
+
+As we can see, we now have an extra path in our dependency graph, coupling our frontend and backend
+![bad](https://i.ibb.co/5KNpTCq/Screen-Shot-2022-09-04-at-6-45-40-pm.png)
+
+
+We're now going to modify the snippet for our project as so and paste it into our config [./.eslintrc.json]
+
+This will tell eslint to emit errors when we break the constraints we have defined. We will tell eslint that the backend and frontend aren't allowed in each others scope
+```json
+"rules": {
+"@nrwl/nx/enforce-module-boundaries": [
+    "error",
+    {
+    "allow": [],
+    // update depConstraints based on your tags
+    "depConstraints": [
+        {
+        "sourceTag": "scope:shared",
+        "onlyDependOnLibsWithTags": ["scope:shared"]
+        },
+        {
+        "sourceTag": "scope:my-backend",
+        "onlyDependOnLibsWithTags": ["scope:shared", "scope:my-backend"]
+        },
+        {
+        "sourceTag": "scope:my-client",
+        "onlyDependOnLibsWithTags": ["scope:shared", "scope:my-client"]
+        }
+    ]
+    }
+]
+}
+```
+
+
+Run the linter to see if our boundaries are applied correctly, we should see an error
+```bash
+#Lint the frontend scope
+npm run lint my-frontend
+
+#We should receive the response from the linter containing the below error
+/Users/admin/Git_Downloads/monorepo-full-stack-web-app/nx-monorepo-full-stack-app/apps/my-frontend/pages/index.tsx
+  4:1   error    A project without tags matching at least one constraint cannot depend on any libraries  @nrwl/nx/enforce-module-boundaries
+```
+
+
+Let's delete the code we added earlier so that the frontend no longer inherits a library in the backend scope
+
+Run the linter again and the error shown above should go away, there may still be some warnings, but we can fix those later
+
+Our dependency graph should now look that same as it did [earlier](https://i.ibb.co/fXkSYNJ/Screen-Shot-2022-09-04-at-6-47-58-pm.png)
+```bash
+npm run lint my-frontend
+```
+
+
+**NOTE** If you are getting this error
+```bash
+error  A project without tags matching at least one constraint cannot depend on any libraries  @nrwl/nx/enforce-module-boundaries
+```
+
+Check that you have defined the scope tags properly in each library in your app, [like so](https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/f86a9b1cbb8bd33d1021c1af79e34a8bb1728298)
 
 ## Application Architecture
 

@@ -58,10 +58,10 @@ start-frontend:
     @npm run dev:ny-frontend
 dbup:
     @npm run db:up
-dependency-graph:
+graph:
     @npx nx graph
-lint:
-    @npm run lint
+lint $scope:
+    @npm run lint $scope
 
 
 # Hidden Recipes
