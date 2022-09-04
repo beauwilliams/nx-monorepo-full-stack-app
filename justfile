@@ -69,6 +69,9 @@ build:
     @npx nx affected --target=build --all --parallel
 build-full:
     @npm run build
+update-all-apps:
+    @echo Updating tools and frameworks to latest versions
+    @npx nx migrate latest
 
 
 # Hidden Recipes
