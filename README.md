@@ -316,11 +316,11 @@ npm run start:dev
 
 ## Setup Workspace Dependency Isolation
 
-### Steps
+### Defining boundaries with nx
 
-Start by revieiwng the [docs here.](https://nx.dev/core-features/enforce-project-boundaries)
+Start by revieiwng the [docs here](https://nx.dev/core-features/enforce-project-boundaries)
 
-Let's check out our dependency graph using this commandnx.json
+Let's check out our current dependency graph in a web browser using this command [http://127.0.0.1:4211/?]
 
 ```bash
 npx nx graph
