@@ -192,7 +192,7 @@ A frontend workspace with:
 ```bash
 #Install nextjs using nx to generate the workspace, selecting css, or other option if preferred
 npm i --save-dev @nrwl/next
-npx nx g @nrwl/next:app my-frontend
+npx nx g @nrwl/next:app my-frontend --tags "scope:my-frontend"
 
 
 #Install graphql frontend client
