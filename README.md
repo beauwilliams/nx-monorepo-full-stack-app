@@ -404,6 +404,9 @@ Try lint the rest of your application, and get familiar with some of the other f
 ```bash
 #Lint all at once
 npx nx run-many --target=lint --all
+#Lint only changed files
+npx nx affected --target=lint
+
 ```
 
 **NOTE** If you are getting this error linting your app

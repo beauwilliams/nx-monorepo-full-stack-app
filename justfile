@@ -62,6 +62,11 @@ graph:
     @npx nx graph
 lint $scope:
     @npm run lint $scope
+build:
+    @echo Running cached build on only affected/changed files
+    @npx nx affected --target=build
+build-full:
+    @npm run build
 
 
 # Hidden Recipes
