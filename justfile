@@ -60,6 +60,8 @@ dbup:
     @npm run db:up
 graph:
     @npx nx graph
+graph-affected:
+    @npx nx affected:graph
 lint $scope:
     @npm run lint $scope
 build:
