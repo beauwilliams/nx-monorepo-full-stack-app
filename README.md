@@ -237,7 +237,7 @@ touch ./tools/gql-client-side-code-generation/gql-client-side-code-generation.ym
 
 
 #Create config for client side graphql endpoint hooks code gen specifying files included to parse [/tools/gql-client-side-code-generation/gql-client-side-code-generation.yml]
-https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/112e602f4a2e1458e43333bc9a1270c4e914d86a
+https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/aff183556a72c04e30a38b07bfd170a657f867e6
 #..rest of file in commit
 documents:
   - 'apps/**/*gql.ts'
