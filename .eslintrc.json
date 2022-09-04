@@ -18,7 +18,7 @@
               },
               {
                 "sourceTag": "scope:my-frontend",
-                "onlyDependOnLibsWithTags": ["scope:shared", "scope:my-frontend"]
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:my-frontend", "scope:my-client"]
               },
               {
                 "sourceTag": "scope:my-backend",

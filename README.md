@@ -328,7 +328,7 @@ npx nx graph
 
 We can see here our dependency graphs are nicely laid out with our backend and frontend decoupled
 
-![good](https://i.ibb.co/fXkSYNJ/Screen-Shot-2022-09-04-at-6-47-58-pm.png)
+![good](https://i.ibb.co/zbytVNs/Screen-Shot-2022-09-04-at-9-45-12-pm.png)
 
 
 Now let's try inheriting a library from our backend into our frontend to see how our dependency graph changes [my-frontend/pages/index.tsx]
