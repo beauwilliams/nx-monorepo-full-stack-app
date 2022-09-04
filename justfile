@@ -64,7 +64,7 @@ lint $scope:
     @npm run lint $scope
 build:
     @echo Running cached build on only affected/changed files
-    @npx nx affected --target=build
+    @npx nx affected --target=build --all --parallel
 build-full:
     @npm run build
 
