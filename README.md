@@ -215,7 +215,7 @@ npm i --save-dev concurrently
 
 #Set up scripts in package.json to run both at once [package.json]
 "start:dev": "env-cmd -f .local.env concurrently --kill-others \"npm:db:up\" \"npm:dev:my-frontend\" \"npm:dev:my-backend\" ",
-"dev:my-backend": "nx serve my-backendi",
+"dev:my-backend": "nx serve my-backend",
 "dev:my-frontend": "nx serve my-frontend",
 
 
