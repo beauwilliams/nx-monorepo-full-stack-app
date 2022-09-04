@@ -405,7 +405,7 @@ Try lint the rest of your application, and get familiar with some of the other f
 #Lint all at once
 npx nx run-many --target=lint --all
 #Lint only changed files
-npx nx affected --target=lint
+npx nx affected --target=lint --all
 
 ```
 
