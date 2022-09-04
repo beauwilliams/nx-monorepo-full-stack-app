@@ -402,7 +402,8 @@ npx nx lint my-frontend
 Try lint the rest of your application, and get familiar with some of the other features of nx boundaries
 
 ```bash
-npx nx lint my-backend
+#Lint all at once
+npx nx run-many --target=lint --all
 ```
 
 **NOTE** If you are getting this error linting your app
