@@ -360,7 +360,7 @@ This will tell eslint to emit errors when we break the constraints we have defin
         },
         {
         "sourceTag": "scope:my-frontend",
-        "onlyDependOnLibsWithTags": ["scope:shared", "scope:my-frontend"]
+        "onlyDependOnLibsWithTags": ["scope:shared", "scope:my-frontend", "scope:my-client"]
         },
         {
         "sourceTag": "scope:my-backend",
