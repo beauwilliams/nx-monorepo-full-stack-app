@@ -416,6 +416,11 @@ error  A project without tags matching at least one constraint cannot depend on 
 
 Check that you have defined the scope tags properly in each library in your app, [like so](https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/f86a9b1cbb8bd33d1021c1af79e34a8bb1728298) [./project.json]
 
+
+### Setting up Authentication
+
+npx nx g @nrwl/nest:resource -p my-backend --directory="app/resources" --type="graphql-code-first" --crud --name authentication
+
 ## Application Architecture
 
 ### Workspace

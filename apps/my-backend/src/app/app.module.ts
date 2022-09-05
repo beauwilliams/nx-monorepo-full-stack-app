@@ -3,6 +3,7 @@ import * as path from 'path';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MercuriusDriver, MercuriusDriverConfig } from '@nestjs/mercurius';
 import { UserModule } from './resources/user/user.module';
+import { AuthenticationModule } from './resources/authentication/authentication.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { UserModule } from './resources/user/user.module';
       graphiql: true,
     }),
     UserModule,
+    AuthenticationModule,
   ],
   controllers: [],
   providers: [],
