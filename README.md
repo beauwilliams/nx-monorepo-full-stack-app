@@ -419,7 +419,19 @@ Check that you have defined the scope tags properly in each library in your app,
 
 ### Setting up Authentication
 
+Create lib
+
 npx nx g @nrwl/nest:resource -p my-backend --directory="app/resources" --type="graphql-code-first" --crud --name authentication
+
+
+Test sign up graphiql playground
+```graphql
+mutation {
+  signup(signupInput:{email: "test@ysignup.com", password: "tytycftgc"}) {
+    id
+  }
+}
+```
 
 ## Application Architecture
 

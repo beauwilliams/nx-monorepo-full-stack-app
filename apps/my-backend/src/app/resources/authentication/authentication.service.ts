@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { UserService } from '../user/user.service'
 import { LoginInput } from './dto/login.input'
-
+import { SignupInput } from './dto/signup.input'
 import * as bcrypt from 'bcrypt'
 import { User } from '@my-full-stack-app/my-backend/generated/db-types'
 
@@ -15,6 +15,12 @@ export class AuthenticationService {
 
   login(loginInput: LoginInput) {
     return {id : loginInput.email};
+  }
+
+  async signup(signupInput: SignupInput) {
+    const { email, password: plaintextPassword } = signupInput
+    const encryptedPassword = await bcrypt.hash(plaintextPassword, 10)
+    return this.userService.create({ data: { email, password: encryptedPassword }})
   }
 
   /* findAll() {
