@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAuthenticationInput } from './dto/create-authentication.input';
+import { LoginInput } from './dto/login.input';
 import { UpdateAuthenticationInput } from './dto/update-authentication.input';
 
 @Injectable()
 export class AuthenticationService {
-  create(createAuthenticationInput: CreateAuthenticationInput) {
-    return 'This action adds a new authentication';
+  login(loginInput: LoginInput) {
+    return {id : loginInput.email};
   }
 
-  findAll() {
+  /* findAll() {
     return `This action returns all authentication`;
   }
 
@@ -22,5 +22,5 @@ export class AuthenticationService {
 
   remove(id: number) {
     return `This action removes a #${id} authentication`;
-  }
+  } */
 }

@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { AuthenticationService } from './authentication.service';
 import { Authentication } from './entities/authentication.entity';
-import { CreateAuthenticationInput } from './dto/create-authentication.input';
+import { LoginInput } from './dto/login.input';
 import { UpdateAuthenticationInput } from './dto/update-authentication.input';
 
 @Resolver(() => Authentication)
@@ -9,14 +9,14 @@ export class AuthenticationResolver {
   constructor(private readonly authenticationService: AuthenticationService) {}
 
   @Mutation(() => Authentication)
-  createAuthentication(
-    @Args('createAuthenticationInput')
-    createAuthenticationInput: CreateAuthenticationInput
+  login(
+    @Args('loginInput')
+    loginInput: LoginInput
   ) {
-    return this.authenticationService.create(createAuthenticationInput);
+    return this.authenticationService.login(loginInput);
   }
 
-  @Query(() => [Authentication], { name: 'authentication' })
+  /* @Query(() => [Authentication], { name: 'authentication' })
   findAll() {
     return this.authenticationService.findAll();
   }
@@ -40,5 +40,5 @@ export class AuthenticationResolver {
   @Mutation(() => Authentication)
   removeAuthentication(@Args('id', { type: () => Int }) id: number) {
     return this.authenticationService.remove(id);
-  }
+  } */
 }
