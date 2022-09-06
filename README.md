@@ -433,6 +433,29 @@ mutation {
 }
 ```
 
+
+- Add libraries
+- Add jwt modules etc to .module files
+- Add validation logic
+- Add guards
+- Add local strategy
+- Test query to confirm its all working
+
+
+```graphql
+mutation {
+  login(loginInput:{email: "test@ysignup.com", password: "tytycftgc"}) {
+    id
+  }
+}
+```
+
+![testLogin](https://i.ibb.co/R7YQcVy/Screen-Shot-2022-09-06-at-5-08-12-pm.png)
+
+Now we will verify our jwt [here at jwt.io](jwt.io)
+
+![verifyCookie](https://i.ibb.co/FVPJ4D4/Screen-Shot-2022-09-06-at-5-13-34-pm.png)
+
 ## Application Architecture
 
 ### Workspace

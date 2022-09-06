@@ -10,7 +10,13 @@ export class AuthenticationService {
   constructor(private readonly userService: UserService) {}
 
   async validateUser(email: string, password: string): Promise<User | null> {
-   return this.userService.findOne({ where: { email } })
+    const user = await this.userService.findOne({ where: { email } })
+    if (!user) return null
+
+    const isMatch = await bcrypt.compare(password, user.password)
+    if (!isMatch) return null
+
+    return user
   }
 
   login(loginInput: LoginInput) {

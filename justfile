@@ -42,10 +42,13 @@ display:
 whoami $name:
     @#Recipe param as env variable with $ sign
     echo $name
-install *PACKAGES:
+install-legacy *PACKAGES:
     @#Recipe param as list of packages
     @echo NOTE: Using legacy peer dependencies flag due to dep conflict with ts-jest and babel
     npm install --legacy-peer-deps {{PACKAGES}}
+install *PACKAGES:
+    @#Recipe param as list of packages
+    npm install {{PACKAGES}}
 install-save-dev *PACKAGES:
     @#Recipe param as list of packages
     @echo NOTE: Using legacy peer dependencies flag due to dep conflict with ts-jest and babel

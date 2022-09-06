@@ -5,11 +5,14 @@ import { LoginInput } from './dto/login.input';
 import { SignupInput } from './dto/signup.input'
 import { UpdateAuthenticationInput } from './dto/update-authentication.input';
 import { User } from '@my-full-stack-app/my-backend/generated/db-types';
+import { UseGuards } from '@nestjs/common';
+import { SetAuthGuard } from '../../guards/auth-guards/set-auth.guards';
 
 @Resolver(() => User)
 export class AuthenticationResolver {
   constructor(private readonly authenticationService: AuthenticationService) {}
 
+  @UseGuards(SetAuthGuard)
   @Mutation(() => User)
   login(
     @Args('loginInput')
