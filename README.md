@@ -421,7 +421,9 @@ Check that you have defined the scope tags properly in each library in your app,
 
 Create lib
 
+```bash
 npx nx g @nrwl/nest:resource -p my-backend --directory="app/resources" --type="graphql-code-first" --crud --name authentication
+```
 
 
 Test sign up graphiql playground
