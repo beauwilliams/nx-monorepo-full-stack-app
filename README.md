@@ -309,9 +309,51 @@ export function Index() {
 
 
 # 🥳 We should now have data displayed from our backend on our frontend 🥳
-npm run start:dev
+npm run start:devtools
 
 ```
+
+### Setting up Tailwind css
+
+
+Install tailwind
+
+```bash
+npm i tailwindcss@latest postcss@latest autoprefixer@latest
+
+cd apps/my-frontend && npx tailwindcss init -p
+```
+
+
+
+Update our postcss config [apps/my-frontend/postcss.config.js]
+
+```javascript
+const { join } = require('path');
+
+module.exports = {
+  plugins: {
+    tailwindcss: {
+      config: join(__dirname, 'tailwind.config.js'),
+    },
+    autoprefixer: {},
+  },
+};
+```
+
+
+Update styles.css to use tailwind [apps/my-frontend/pages/styles.css]
+
+Note: We can delete rest of styles later. For now we keep until we update our pages.
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+
+Setup globally shared tailwind presets (i.e colour scheme) for use in multiple apps
 
 
 ## Setup Workspace Dependency Isolation
