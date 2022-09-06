@@ -75,6 +75,9 @@ build-full:
 update-all-apps:
     @echo Updating tools and frameworks to latest versions
     @npx nx migrate latest
+bundle-size-frontend:
+    @npx nx run my-frontend:export
+
 
 
 # Hidden Recipes

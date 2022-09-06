@@ -353,7 +353,106 @@ Note: We can delete rest of styles later. For now we keep until we update our pa
 ```
 
 
-Setup globally shared tailwind presets (i.e colour scheme) for use in multiple apps
+Setup globally shared tailwind presets (i.e colour scheme) for use in multiple apps [./tailwind.workspace.preset.js]
+
+
+We import typography package globally here as example, [see more presets here](https://tailwindcss.com/docs/presets)
+
+```javascript
+module.exports = {
+  theme: {
+        extend: {
+            colors: {
+                'my-white': '#ffffff',
+                'my-grey': '#333333',
+            },
+        },
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [require('@tailwindcss/typography')],
+};
+```
+
+
+Update tailwind config in our frontend [my-frontend/tailwind.config.js]
+
+```javascript
+const { join } = require('path');
+
+// available since Nx v 12.5
+const { createGlobPatternsForDependencies } = require('@nrwl/next/tailwind');
+
+module.exports = {
+  presets: [require('../../tailwind.workspace.preset.js')],
+  purge: [
+    join(__dirname, 'pages/**/*.{js,ts,jsx,tsx}'),
+    ...createGlobPatternsForDependencies(__dirname),
+  ],
+  darkMode: 'media', // or 'media' or 'class'
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
+Test our bundle sizes in the frontend. Consider routes for optimisation if necessary.
+```bash
+npx nx run my-frontend:export
+```
+
+[Long guide here](https://blog.nrwl.io/setup-next-js-to-use-tailwind-with-nx-849b7e21d8d0)
+
+
+
+### Setting up Authentication
+
+Create lib
+
+```bash
+npx nx g @nrwl/nest:resource -p my-backend --directory="app/resources" --type="graphql-code-first" --crud --name authentication
+```
+
+
+Test sign up graphiql playground
+```graphql
+mutation {
+  signup(signupInput:{email: "test@ysignup.com", password: "tytycftgc"}) {
+    id
+  }
+}
+```
+
+
+- Add libraries
+- Add jwt modules etc to .module files
+- Add validation logic
+- Add guards
+- Add local strategy
+- Test query to confirm its all working
+
+
+```graphql
+mutation {
+  login(loginInput:{email: "test@ysignup.com", password: "tytycftgc"}) {
+    id
+  }
+}
+```
+
+![testLogin](https://i.ibb.co/R7YQcVy/Screen-Shot-2022-09-06-at-5-08-12-pm.png)
+
+Now we will verify our jwt [here at jwt.io](jwt.io)
+
+![verifyCookie](https://i.ibb.co/FVPJ4D4/Screen-Shot-2022-09-06-at-5-13-34-pm.png)
+
+
+
 
 
 ## Setup Workspace Dependency Isolation
@@ -459,46 +558,6 @@ error  A project without tags matching at least one constraint cannot depend on 
 Check that you have defined the scope tags properly in each library in your app, [like so](https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/f86a9b1cbb8bd33d1021c1af79e34a8bb1728298) [./project.json]
 
 
-### Setting up Authentication
-
-Create lib
-
-```bash
-npx nx g @nrwl/nest:resource -p my-backend --directory="app/resources" --type="graphql-code-first" --crud --name authentication
-```
-
-
-Test sign up graphiql playground
-```graphql
-mutation {
-  signup(signupInput:{email: "test@ysignup.com", password: "tytycftgc"}) {
-    id
-  }
-}
-```
-
-
-- Add libraries
-- Add jwt modules etc to .module files
-- Add validation logic
-- Add guards
-- Add local strategy
-- Test query to confirm its all working
-
-
-```graphql
-mutation {
-  login(loginInput:{email: "test@ysignup.com", password: "tytycftgc"}) {
-    id
-  }
-}
-```
-
-![testLogin](https://i.ibb.co/R7YQcVy/Screen-Shot-2022-09-06-at-5-08-12-pm.png)
-
-Now we will verify our jwt [here at jwt.io](jwt.io)
-
-![verifyCookie](https://i.ibb.co/FVPJ4D4/Screen-Shot-2022-09-06-at-5-13-34-pm.png)
 
 ## Application Architecture
 
