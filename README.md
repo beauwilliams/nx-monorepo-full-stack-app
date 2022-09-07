@@ -23,6 +23,7 @@ A backend workspace with:
 
 - NodeJs, 100% typescript and typed
 - Postgresql db
+- GraphQL
 - Docker-compose for db migrations
 - Prisma database ORM to handle migrations, view database in web browser and more etc
 - Auto-generated graphql endpoints with validation via prisma
