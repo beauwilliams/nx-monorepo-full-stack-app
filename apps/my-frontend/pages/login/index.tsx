@@ -1,15 +1,20 @@
+import { useLoginMutation } from '../../api/auth/auth.gql.gen';
+import { withApi } from '../../api/my-client-api'
+import { useState } from 'react';
+
 /* eslint-disable-next-line */
 export interface LoginProps {}
 
 export function Login(props: LoginProps) {
-  const handleFormSubmit = (e) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [, login] = useLoginMutation();
+
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-
-    let email = e.target.elements.email?.value;
-    let password = e.target.elements.password?.value;
-
-    console.log(email, password);
+    await login({ args: { email, password } });
   };
+
   return (
     <>
       <section className="bg-gray-50 dark:bg-gray-900">
@@ -44,6 +49,8 @@ export function Login(props: LoginProps) {
                     className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 dark:bg-gray-800 dark:border-gray-700 dark:caret-white`}
                     id="email"
                     placeholder="Your Email"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
                   />
                 </div>
                 <div>
@@ -58,6 +65,8 @@ export function Login(props: LoginProps) {
                     className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 dark:bg-gray-800 dark:border-gray-700 dark:caret-white`}
                     id="password"
                     placeholder="Your Password"
+                    value={password}
+                    onChange={(event) => setPassword(event.target.value)}
                   />
                 </div>
 
@@ -86,4 +95,4 @@ export function Login(props: LoginProps) {
   );
 }
 
-export default Login;
+export default withApi(Login)
