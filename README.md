@@ -316,7 +316,16 @@ npm run start:devtools
 
 ### Setting up Tailwind css
 
-Install tailwind
+#### Install tailwind using the builtin NX generator.
+
+I chose to install manually, so that we could define some colours, and create a global config.
+But the automatic setup is what I might use next time. [See nx docs for ref here](https://nx.dev/recipe/using-tailwind-css-in-react)
+
+```bash
+npx nx g @nrwl/react:setup-tailwind --project=my-frontend
+```
+
+#### Installing manually
 
 ```bash
 npm i tailwindcss@latest postcss@latest autoprefixer@latest @tailwindcss/typography
@@ -324,7 +333,7 @@ npm i tailwindcss@latest postcss@latest autoprefixer@latest @tailwindcss/typogra
 cd apps/my-frontend && npx tailwindcss init -p
 ```
 
-Update our postcss config [apps/my-frontend/postcss.config.js]
+##### Update our postcss config [apps/my-frontend/postcss.config.js]
 
 ```javascript
 const { join } = require('path');
@@ -339,7 +348,7 @@ module.exports = {
 };
 ```
 
-#### Update styles.css to use tailwind [apps/my-frontend/pages/styles.css]
+##### Update styles.css to use tailwind [apps/my-frontend/pages/styles.css]
 
 Note: We can delete rest of styles later. For now we keep until we update our pages.
 
@@ -349,7 +358,7 @@ Note: We can delete rest of styles later. For now we keep until we update our pa
 @tailwind utilities;
 ```
 
-#### Setup globally shared tailwind presets (i.e colour scheme) for use in multiple apps [./tailwind.workspace.preset.js]
+##### Setup globally shared tailwind presets (i.e colour scheme) for use in multiple apps [./tailwind.workspace.preset.js]
 
 We import typography package globally here as example, [see more presets here](https://tailwindcss.com/docs/presets)
 
@@ -370,7 +379,7 @@ module.exports = {
 };
 ```
 
-#### Update tailwind config in our frontend [my-frontend/tailwind.config.js]
+##### Update tailwind config in our frontend [my-frontend/tailwind.config.js]
 
 ```javascript
 const { join } = require('path');
@@ -395,13 +404,13 @@ module.exports = {
 };
 ```
 
-#### Test our bundle sizes in the frontend. Consider routes for optimisation if necessary.
+##### Test our bundle sizes in the frontend. Consider routes for optimisation if necessary.
 
 ```bash
 npx nx run my-frontend:export
 ```
 
-[Long guide here](https://blog.nrwl.io/setup-next-js-to-use-tailwind-with-nx-849b7e21d8d0)
+[Long manual setup guide here](https://blog.nrwl.io/setup-next-js-to-use-tailwind-with-nx-849b7e21d8d0)
 
 ### Setting up Authentication
 
