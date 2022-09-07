@@ -80,8 +80,6 @@ build-full:
 update-nx-workspace:
     @echo Updating tools and frameworks to latest versions and depedenencies
     @npx nx migrate @nrwl/workspace@latest
-    @npx nx migrate --run-migrations --dry-run
-    @echo If satisfied with generated migration, apply migrations with: npx nx migrate --run-migrations
 bundle-size-frontend:
     @npx nx run my-frontend:export
 create-page-my-frontend *PAGE_NAME:
