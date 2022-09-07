@@ -1,4 +1,4 @@
-# Nx Monorepo Typestack Full-stack Web App
+# Nx Monorepo Typestack Web App
 
 
 
