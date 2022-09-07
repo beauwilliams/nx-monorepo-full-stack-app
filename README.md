@@ -322,7 +322,7 @@ I chose to install manually, so that we could define some colours, and create a 
 But the automatic setup is what I might use next time. [See nx docs for ref here](https://nx.dev/recipe/using-tailwind-css-in-react)
 
 ```bash
-npx nx g @nrwl/react:setup-tailwind --project=my-frontend
+npx nx g @nrwl/next:setup-tailwind --project=my-frontend
 ```
 
 #### Installing manually
