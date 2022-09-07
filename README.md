@@ -342,7 +342,7 @@ module.exports = {
 ```
 
 
-Update styles.css to use tailwind [apps/my-frontend/pages/styles.css]
+#### Update styles.css to use tailwind [apps/my-frontend/pages/styles.css]
 
 Note: We can delete rest of styles later. For now we keep until we update our pages.
 
@@ -353,7 +353,7 @@ Note: We can delete rest of styles later. For now we keep until we update our pa
 ```
 
 
-Setup globally shared tailwind presets (i.e colour scheme) for use in multiple apps [./tailwind.workspace.preset.js]
+#### Setup globally shared tailwind presets (i.e colour scheme) for use in multiple apps [./tailwind.workspace.preset.js]
 
 
 We import typography package globally here as example, [see more presets here](https://tailwindcss.com/docs/presets)
@@ -376,7 +376,7 @@ module.exports = {
 ```
 
 
-Update tailwind config in our frontend [my-frontend/tailwind.config.js]
+#### Update tailwind config in our frontend [my-frontend/tailwind.config.js]
 
 ```javascript
 const { join } = require('path');
@@ -401,7 +401,8 @@ module.exports = {
 };
 ```
 
-Test our bundle sizes in the frontend. Consider routes for optimisation if necessary.
+#### Test our bundle sizes in the frontend. Consider routes for optimisation if necessary.
+
 ```bash
 npx nx run my-frontend:export
 ```
@@ -412,14 +413,15 @@ npx nx run my-frontend:export
 
 ### Setting up Authentication
 
-Create lib
+#### Create lib
 
 ```bash
 npx nx g @nrwl/nest:resource -p my-backend --directory="app/resources" --type="graphql-code-first" --crud --name authentication
 ```
 
 
-Test sign up graphiql playground
+#### Test sign up graphiql playground
+
 ```graphql
 mutation {
   signup(signupInput:{email: "test@ysignup.com", password: "tytycftgc"}) {
@@ -452,6 +454,12 @@ Now we will verify our jwt [here at jwt.io](jwt.io)
 ![verifyCookie](https://i.ibb.co/FVPJ4D4/Screen-Shot-2022-09-06-at-5-13-34-pm.png)
 
 
+#### Create some pages for /login and /signup
+
+```bash
+npx nx g @nrwl/next:page --project=my-frontend --style=css --name=login
+npx nx g @nrwl/next:page --project=my-frontend --style=css --name=signup
+```
 
 
 

@@ -77,6 +77,10 @@ update-all-apps:
     @npx nx migrate latest
 bundle-size-frontend:
     @npx nx run my-frontend:export
+create-page-my-frontend *PAGE_NAME:
+    @echo NOTE: Use --dry-run flag to see what will be created
+    @npx nx g @nrwl/next:page --project=my-frontend --style=css --name={{PAGE_NAME}}
+
 
 
 
