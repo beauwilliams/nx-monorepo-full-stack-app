@@ -1,4 +1,6 @@
-# nx-monorepo-full-stack-web-app
+# Nx Monorepo Typestack Full-stack Web App (Typescript end-to-end typed code gen, gql hooks)
+
+![ezgif-4-0a35397a62](https://user-images.githubusercontent.com/7098556/188890624-2cfb030a-a4a5-45e6-95dc-f751d0fa4810.gif)
 
 ## Notable app features
 
@@ -10,6 +12,8 @@
 - Auto-code-gen on backend from schemas
 - Auto-code-gen on frontend from auto-generated backend endpoints
 - Auto-code-gen of boilerplate for libraries, apps, react components and more
+- Frontend: NextJs, Tailwind, URQL, GraphQL Codegen
+- Backend: Docker, PostgreSQL, Nest, Fastify, GraphQL,Prisma, Mercurius, Class-transformer, Class-validator
 
 ## Steps to build the app
 
