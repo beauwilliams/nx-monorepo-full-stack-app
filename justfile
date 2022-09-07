@@ -62,8 +62,12 @@ start-backend:
     @npm run dev:my-backend
 start-frontend:
     @npm run dev:ny-frontend
-dbup:
+database-up:
     @npm run db:up
+database-browser:
+    @npm run db:studio
+generate-graphql:
+    @npm run gen:gql
 graph:
     @npx nx graph
 graph-affected:
