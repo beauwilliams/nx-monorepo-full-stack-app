@@ -458,6 +458,20 @@ npx nx g @nrwl/next:page --project=my-frontend --style=css --name=login
 npx nx g @nrwl/next:page --project=my-frontend --style=css --name=signup
 ```
 
+
+
+#### Testing our login through the dev tools response section
+
+![response](https://i.ibb.co/znGmSvF/Screen-Shot-2022-09-07-at-11-18-53-pm.png)
+
+
+Implement cookies ....
+
+#### Confirming cookies received through dev tools application section
+
+![cookies](https://i.ibb.co/RDW94zQ/Screen-Shot-2022-09-07-at-11-18-41-pm.png)
+
+
 ## Setup Workspace Dependency Isolation
 
 ### Defining boundaries with nx
