@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
-import { User } from '@full-stack/api/generated/db-types'
+import { User } from '@my-full-stack-app/my-backend/generated/db-types'
 
 export interface IUserContext {
   reply: FastifyReply
