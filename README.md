@@ -1,4 +1,4 @@
-# Nx Monorepo Typestack Full-stack Web App (Typescript end-to-end typed code gen, gql hooks)
+# Nx Monorepo Typestack Full-stack Web App
 
 
 
