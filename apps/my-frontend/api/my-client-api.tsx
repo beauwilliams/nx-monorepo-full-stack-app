@@ -1,12 +1,9 @@
-import React, {FC} from 'react';
-import {cacheExchange, createClient, fetchExchange, Provider,} from 'urql';
+import React, { FC } from 'react';
+import { cacheExchange, createClient, fetchExchange, Provider } from 'urql';
 
 export const clientApi = createClient({
   url: 'http://localhost:3333/graphql',
-  exchanges: [
-    cacheExchange,
-    fetchExchange,
-  ],
+  exchanges: [cacheExchange, fetchExchange],
 });
 
 export const withApi = (Component: FC) => {

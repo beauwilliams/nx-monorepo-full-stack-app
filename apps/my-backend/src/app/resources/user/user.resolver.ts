@@ -1,6 +1,11 @@
-import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
-import { UserService } from "./user.service";
-import { CreateOneUserArgs, FindUniqueUserArgs, UpdateOneUserArgs, User } from "@my-full-stack-app/my-backend/generated/db-types";
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { UserService } from './user.service';
+import {
+  CreateOneUserArgs,
+  FindUniqueUserArgs,
+  UpdateOneUserArgs,
+  User,
+} from '@my-full-stack-app/my-backend/generated/db-types';
 
 @Resolver(() => User)
 export class UserResolver {

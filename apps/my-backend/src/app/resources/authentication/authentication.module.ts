@@ -1,19 +1,19 @@
 import { Module } from '@nestjs/common';
 import { AuthenticationService } from './authentication.service';
 import { AuthenticationResolver } from './authentication.resolver';
-import { UserModule } from "../user/user.module";
+import { UserModule } from '../user/user.module';
 import { LocalStrategy } from '../../guards/auth-guards/strategy/local.strategy';
-import { JwtModule } from '@nestjs/jwt'
-
-
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
-  imports: [UserModule,
-      JwtModule.register({
+  imports: [
+    UserModule,
+    JwtModule.register({
       //NOTE: In a production application, use a more secure way to inject env vars
       secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: Number(process.env.JWT_EXPIRES_SECONDS) }
-    })],
+      signOptions: { expiresIn: Number(process.env.JWT_EXPIRES_SECONDS) },
+    }),
+  ],
   providers: [AuthenticationResolver, AuthenticationService, LocalStrategy],
 })
 export class AuthenticationModule {}
