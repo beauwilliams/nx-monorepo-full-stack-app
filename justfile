@@ -42,6 +42,9 @@ display:
 whoami $name:
     @#Recipe param as env variable with $ sign
     echo $name
+init:
+    @echo Initialising newly cloned repository..
+    @npm install
 install-legacy *PACKAGES:
     @#Recipe param as list of packages
     @echo NOTE: Using legacy peer dependencies flag due to dep conflict with ts-jest and babel
