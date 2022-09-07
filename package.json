@@ -39,6 +39,7 @@
     "@nestjs/platform-fastify": "^9.0.11",
     "@nrwl/devkit": "^14.6.4",
     "@prisma/client": "^4.3.1",
+    "@tailwindcss/typography": "^0.5.7",
     "@types/passport-jwt": "^3.0.6",
     "@types/passport-local": "^1.0.34",
     "autoprefixer": "^10.4.8",

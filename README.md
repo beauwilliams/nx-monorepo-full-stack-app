@@ -16,6 +16,7 @@
 ### Setup backend
 
 A backend workspace with:
+
 - NodeJs, 100% typescript and typed
 - Postgresql db
 - Docker-compose for db migrations
@@ -180,10 +181,10 @@ app.use(
 )
 ```
 
-
 ## Setup Frontend
 
 A frontend workspace with:
+
 - NextJS
 - Auto-code-gen of react hooks to fetch data from graphql
 - End to end typed
@@ -315,16 +316,13 @@ npm run start:devtools
 
 ### Setting up Tailwind css
 
-
 Install tailwind
 
 ```bash
-npm i tailwindcss@latest postcss@latest autoprefixer@latest
+npm i tailwindcss@latest postcss@latest autoprefixer@latest @tailwindcss/typography
 
 cd apps/my-frontend && npx tailwindcss init -p
 ```
-
-
 
 Update our postcss config [apps/my-frontend/postcss.config.js]
 
@@ -341,7 +339,6 @@ module.exports = {
 };
 ```
 
-
 #### Update styles.css to use tailwind [apps/my-frontend/pages/styles.css]
 
 Note: We can delete rest of styles later. For now we keep until we update our pages.
@@ -352,21 +349,19 @@ Note: We can delete rest of styles later. For now we keep until we update our pa
 @tailwind utilities;
 ```
 
-
 #### Setup globally shared tailwind presets (i.e colour scheme) for use in multiple apps [./tailwind.workspace.preset.js]
-
 
 We import typography package globally here as example, [see more presets here](https://tailwindcss.com/docs/presets)
 
 ```javascript
 module.exports = {
   theme: {
-        extend: {
-            colors: {
-                'my-white': '#ffffff',
-                'my-grey': '#333333',
-            },
-        },
+    extend: {
+      colors: {
+        'my-white': '#ffffff',
+        'my-grey': '#333333',
+      },
+    },
   },
   variants: {
     extend: {},
@@ -374,7 +369,6 @@ module.exports = {
   plugins: [require('@tailwindcss/typography')],
 };
 ```
-
 
 #### Update tailwind config in our frontend [my-frontend/tailwind.config.js]
 
@@ -409,8 +403,6 @@ npx nx run my-frontend:export
 
 [Long guide here](https://blog.nrwl.io/setup-next-js-to-use-tailwind-with-nx-849b7e21d8d0)
 
-
-
 ### Setting up Authentication
 
 #### Create lib
@@ -419,17 +411,15 @@ npx nx run my-frontend:export
 npx nx g @nrwl/nest:resource -p my-backend --directory="app/resources" --type="graphql-code-first" --crud --name authentication
 ```
 
-
 #### Test sign up graphiql playground
 
 ```graphql
 mutation {
-  signup(signupInput:{email: "test@ysignup.com", password: "tytycftgc"}) {
+  signup(signupInput: { email: "test@ysignup.com", password: "tytycftgc" }) {
     id
   }
 }
 ```
-
 
 - Add libraries
 - Add jwt modules etc to .module files
@@ -438,10 +428,9 @@ mutation {
 - Add local strategy
 - Test query to confirm its all working
 
-
 ```graphql
 mutation {
-  login(loginInput:{email: "test@ysignup.com", password: "tytycftgc"}) {
+  login(loginInput: { email: "test@ysignup.com", password: "tytycftgc" }) {
     id
   }
 }
@@ -453,15 +442,12 @@ Now we will verify our jwt [here at jwt.io](jwt.io)
 
 ![verifyCookie](https://i.ibb.co/FVPJ4D4/Screen-Shot-2022-09-06-at-5-13-34-pm.png)
 
-
 #### Create some pages for /login and /signup
 
 ```bash
 npx nx g @nrwl/next:page --project=my-frontend --style=css --name=login
 npx nx g @nrwl/next:page --project=my-frontend --style=css --name=signup
 ```
-
-
 
 ## Setup Workspace Dependency Isolation
 
@@ -479,23 +465,26 @@ We can see here our dependency graphs are nicely laid out with our backend and f
 
 ![good](https://i.ibb.co/zbytVNs/Screen-Shot-2022-09-04-at-9-45-12-pm.png)
 
-
 Now let's try inheriting a library from our backend into our frontend to see how our dependency graph changes [my-frontend/pages/index.tsx]
 
 ```typescript
-import { CreateOneUserArgs, FindUniqueUserArgs, UpdateOneUserArgs, User } from "@my-full-stack-app/my-backend/generated/db-types";
-type test = CreateOneUserArgs
+import {
+  CreateOneUserArgs,
+  FindUniqueUserArgs,
+  UpdateOneUserArgs,
+  User,
+} from '@my-full-stack-app/my-backend/generated/db-types';
+type test = CreateOneUserArgs;
 ```
-
 
 As we can see, we now have an extra path in our dependency graph, coupling our frontend and backend
 
 ![bad](https://i.ibb.co/5KNpTCq/Screen-Shot-2022-09-04-at-6-45-40-pm.png)
 
-
 We're now going to modify the snippet for our project as so and paste it into our config [./.eslintrc.json]
 
 This will tell eslint to emit errors when we break the constraints we have defined. We will tell eslint that the backend and frontend aren't allowed in each others scope
+
 ```json
 "rules": {
 "@nrwl/nx/enforce-module-boundaries": [
@@ -525,8 +514,8 @@ This will tell eslint to emit errors when we break the constraints we have defin
 }
 ```
 
-
 Run the linter to see if our boundaries are applied correctly, we should see an error
+
 ```bash
 #Lint the frontend scope
 
@@ -538,12 +527,12 @@ npx nx lint my-frontend
   4:1   error    A project tagged with "scope:my-frontend" can only depend on libs tagged with "scope:shared", "scope:my-frontend"  @nrwl/nx/enforce-module-boundaries
 ```
 
-
 Let's delete the code we added earlier so that the frontend no longer inherits a library in the backend scope
 
 Run the linter again and the error shown above should go away, there may still be some warnings, but we can fix those later
 
 Our dependency graph should now look that same as it did [earlier](https://i.ibb.co/fXkSYNJ/Screen-Shot-2022-09-04-at-6-47-58-pm.png), perfect! We've now isolated our frontend from our backend successfully
+
 ```bash
 npx nx lint my-frontend
 ```
@@ -559,20 +548,18 @@ npx nx affected --target=lint --all
 ```
 
 **NOTE** If you are getting this error linting your app
+
 ```bash
 error  A project without tags matching at least one constraint cannot depend on any libraries  @nrwl/nx/enforce-module-boundaries
 ```
 
 Check that you have defined the scope tags properly in each library in your app, [like so](https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/f86a9b1cbb8bd33d1021c1af79e34a8bb1728298) [./project.json]
 
-
-
 ## Application Architecture
 
 ### Workspace
 
 - [Using NX](https://nx.dev/)
-
 
 ### Backend
 
@@ -581,12 +568,10 @@ Check that you have defined the scope tags properly in each library in your app,
 - [Database Validation]()
 - [Database Schemas]()
 
-
 ### Frontend
 
 - [Framework](React)
 - [SSR & Goodies](NextJS)
-
 
 ## Workspace link
 
@@ -599,9 +584,7 @@ https://cloud.nx.app/orgs/workspace-setup?accessToken=MjExNDZjMzktY2YyMS00YTUzLW
 
 ## NOTE: Autogenerated MD content is below
 
-
 This project was generated using [Nx](https://nx.dev).
-
 
 🔎 **Smart, Fast and Extensible Build System**
 
@@ -676,12 +659,9 @@ Run `nx graph` to see a diagram of the dependencies of your projects.
 
 Visit the [Nx Documentation](https://nx.dev) to learn more.
 
-
-
 ## ☁ Nx Cloud
 
 ### Distributed Computation Caching & Distributed Task Execution
-
 
 Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
 
