@@ -17,7 +17,7 @@ export function Login(props: LoginProps) {
 
   return (
     <>
-      <section className="bg-gray-50 dark:bg-gray-900">
+      <section className="bg-gray-50 dark:bg-gray-900 h-screen">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a
             href="#"
@@ -46,7 +46,7 @@ export function Login(props: LoginProps) {
                   </label>
                   <input
                     type="email"
-                    className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 dark:bg-gray-800 dark:border-gray-700 dark:caret-white`}
+                    className={`w-full p-2 text-black dark:text-white border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 dark:bg-gray-800 dark:border-gray-700 dark:caret-white`}
                     id="email"
                     placeholder="Your Email"
                     value={email}
@@ -62,7 +62,7 @@ export function Login(props: LoginProps) {
                   </label>
                   <input
                     type="password"
-                    className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 dark:bg-gray-800 dark:border-gray-700 dark:caret-white`}
+                    className={`w-full p-2 text-black dark:text-white border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 dark:bg-gray-800 dark:border-gray-700 dark:caret-white`}
                     id="password"
                     placeholder="Your Password"
                     value={password}
