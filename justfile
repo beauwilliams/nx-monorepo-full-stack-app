@@ -67,6 +67,8 @@ graph-affected:
     @npx nx affected:graph
 lint $scope:
     @npm run lint $scope
+format-all:
+    @npx nx format:write --all
 build:
     @echo Running cached build on only affected/changed files
     @npx nx affected --target=build --all --parallel
