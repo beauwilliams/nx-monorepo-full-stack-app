@@ -528,7 +528,7 @@ Implement auth guards
 - verify auth guards
 - add guard decorators to routes
 - read best practises: https://www.rfc-editor.org/rfc/rfc8725.html
-
+- add note on gql query createUser, does not encrypt password, its for admin use if anything. FYI. Auth not work when made that way.. use signupInput gql query instead
 
 
 
