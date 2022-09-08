@@ -522,8 +522,21 @@ Implement cookies ....
 
 
 
+Implement auth guards
+- npm i passport-jwt
+- jwt strategy
+- verify auth guards
+- add guard decorators to routes
+- read best practises: https://www.rfc-editor.org/rfc/rfc8725.html
 
 
+
+
+
+
+## Setup application logging and analytics services
+
+TODO
 
 
 

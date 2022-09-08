@@ -4,6 +4,7 @@ import { AuthenticationResolver } from './authentication.resolver';
 import { UserModule } from '../user/user.module';
 import { LocalStrategy } from '../../guards/auth-guards/strategy/local.strategy';
 import { JwtModule } from '@nestjs/jwt';
+import { JwtStrategy } from '../../guards/auth-guards/strategy/jwt.strategy'
 
 @Module({
   imports: [
@@ -14,6 +15,6 @@ import { JwtModule } from '@nestjs/jwt';
       signOptions: { expiresIn: Number(process.env.JWT_EXPIRES_SECONDS) },
     }),
   ],
-  providers: [AuthenticationResolver, AuthenticationService, LocalStrategy],
+  providers: [AuthenticationResolver, AuthenticationService, LocalStrategy, JwtStrategy],
 })
 export class AuthenticationModule {}
