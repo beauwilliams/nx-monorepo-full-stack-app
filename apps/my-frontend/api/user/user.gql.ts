@@ -1,4 +1,4 @@
-import { gql } from 'urql';
+import { gql } from 'urql'
 
 const GET_USER = gql`
   query GetUser($args: UserWhereUniqueInput!) {
@@ -7,4 +7,14 @@ const GET_USER = gql`
       email
     }
   }
-`;
+`
+
+const GET_USERS = gql`
+  query GetUsers {
+    users {
+      id
+      name
+      email
+    }
+  }
+`
