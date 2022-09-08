@@ -66,6 +66,9 @@ database-up:
     @npm run db:up
 database-browser:
     @npm run db:studio
+database-generate:
+    @echo Running prisma generate to gen db types from db schema for use with graphQL
+    @npm run db:create-client
 generate-graphql:
     @npm run gen:gql
 graph:
