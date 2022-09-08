@@ -65,6 +65,7 @@ export type QueryUserArgs = {
 
 export type SignupInput = {
   email: Scalars['String'];
+  name?: InputMaybe<Scalars['String']>;
   password: Scalars['String'];
 };
 

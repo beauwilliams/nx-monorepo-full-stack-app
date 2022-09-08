@@ -5,4 +5,5 @@ import { UserCreateInput } from '@my-full-stack-app/my-backend/generated/db-type
 export class SignupInput extends PickType(UserCreateInput, [
   'email',
   'password',
+  'name',
 ]) {}

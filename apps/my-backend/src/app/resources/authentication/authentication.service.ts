@@ -24,10 +24,10 @@ export class AuthenticationService {
   }
 
   async signup(signupInput: SignupInput) {
-    const { email, password: plaintextPassword } = signupInput;
+    const { email, password: plaintextPassword, name } = signupInput;
     const encryptedPassword = await bcrypt.hash(plaintextPassword, 10);
     return this.userService.create({
-      data: { email, password: encryptedPassword },
+      data: { email, password: encryptedPassword, name },
     });
   }
 
