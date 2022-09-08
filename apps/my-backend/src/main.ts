@@ -10,6 +10,7 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import type { FastifyCookieOptions } from '@fastify/cookie';
+import fastifyRateLimit from '@fastify/rate-limit';
 import cookie from '@fastify/cookie';
 import helmet from 'helmet';
 
@@ -44,6 +45,22 @@ async function bootstrap() {
       transformOptions: { enableImplicitConversion: true },
     })
   );
+
+  await app.register(fastifyRateLimit, {
+    global: true,
+    max: 100,
+    timeWindow: '1 minute',
+    errorResponseBuilder: function (_, context) {
+      return {
+        code: 429,
+        error: 'Too Many Requests',
+        message: `I only allow ${context.max} requests per ${context.after} to this Website. Try again soon.`,
+        date: Date.now(),
+        expiresIn: context.ttl, // milliseconds
+      };
+    },
+  });
+
 
   app.register(cookie, {
     secret: process.env.MY_COOKIE_KEY,

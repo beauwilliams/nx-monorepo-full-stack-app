@@ -194,6 +194,30 @@ app.use(
     contentSecurityPolicy: isProduction ? undefined : developmentContentSecurityPolicy
   })
 )
+
+
+#Set up rate limiting with nestJS fastify adapter with the fastify plugin [my-backend/src/main.ts]
+
+#Install the plugin
+npm i @fastify/rate-limit
+
+#Register fastify plugin with our nestJS server
+import fastifyRateLimit from '@fastify/rate-limit';
+
+await app.register(fastifyRateLimit, {
+global: true,
+max: 100,
+timeWindow: '1 minute',
+errorResponseBuilder: function (_, context) {
+    return {
+    code: 429,
+    error: 'Too Many Requests',
+    message: `I only allow ${context.max} requests per ${context.after} to this Website. Try again soon.`,
+    date: Date.now(),
+    expiresIn: context.ttl, // milliseconds
+    };
+},
+});
 ```
 
 
