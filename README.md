@@ -460,6 +460,7 @@ npx nx run my-frontend:export
 [Long manual setup guide here](https://blog.nrwl.io/setup-next-js-to-use-tailwind-with-nx-849b7e21d8d0)
 
 
+##### Automatic Dark/Light
 
 
 
@@ -529,6 +530,22 @@ Implement auth guards
 - add guard decorators to routes
 - read best practises: https://www.rfc-editor.org/rfc/rfc8725.html
 - add note on gql query createUser, does not encrypt password, its for admin use if anything. FYI. Auth not work when made that way.. use signupInput gql query instead
+
+
+
+
+## Setup Serverside rendering for graphql backend requests
+
+
+Let's start by checking the dev tools under Network -> Fetch/XHR
+
+Here we can see the client side requests our app makes
+
+Notice that the graphql server is requested from the client side, this is going to slow our page loads!
+
+![No SSR](https://i.ibb.co/HFFNdwV/Screen-Shot-2022-09-09-at-10-48-55-am.png)
+
+Let's get to work implementing it...
 
 
 
