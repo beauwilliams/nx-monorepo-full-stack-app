@@ -61,7 +61,6 @@ async function bootstrap() {
     },
   });
 
-
   app.register(cookie, {
     secret: process.env.MY_COOKIE_KEY,
     parseOptions: {},

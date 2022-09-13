@@ -1,8 +1,8 @@
-import { Strategy } from 'passport-jwt'
-import { PassportStrategy } from '@nestjs/passport'
-import { Injectable } from '@nestjs/common'
-import { FastifyRequest } from 'fastify'
-import { UserJwtPayload } from '../types'
+import { Strategy } from 'passport-jwt';
+import { PassportStrategy } from '@nestjs/passport';
+import { Injectable } from '@nestjs/common';
+import { FastifyRequest } from 'fastify';
+import { UserJwtPayload } from '../types';
 
 // some jwt best practices https://www.rfc-editor.org/rfc/rfc8725.html
 
@@ -13,24 +13,24 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       jwtFromRequest: cookieExtractor,
       ignoreExpiration: false,
       secretOrKey: process.env.JWT_SECRET,
-      jsonWebTokenOptions: { algorithms: ['HS256'] }
-    })
+      jsonWebTokenOptions: { algorithms: ['HS256'] },
+    });
   }
 
   async validate(payload: { sub?: string }): Promise<UserJwtPayload> {
-    if (!payload.sub) return false
+    if (!payload.sub) return false;
 
-    return { id: payload.sub }
+    return { id: payload.sub };
   }
 }
 
 const cookieExtractor = (request: FastifyRequest): string | null => {
-  const isCookieTokenExist = !!request?.cookies?.token
+  const isCookieTokenExist = !!request?.cookies?.token;
   if (!isCookieTokenExist) {
-    console.log('Cookie not passed') // TODO: log to system wide logger solution
-    return null
+    console.log('Cookie not passed'); // TODO: log to system wide logger solution
+    return null;
   }
 
-  const unsignedCookieToken = request.unsignCookie(request.cookies.token)
-  return unsignedCookieToken?.value || null
-}
+  const unsignedCookieToken = request.unsignCookie(request.cookies.token);
+  return unsignedCookieToken?.value || null;
+};

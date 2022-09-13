@@ -1,5 +1,5 @@
 import { useLoginMutation } from '../../api/auth/auth.gql.gen';
-import { withApi } from '../../api/my-client-api'
+import { withApi } from '../../api/my-client-api';
 import { useState } from 'react';
 
 /* eslint-disable-next-line */
@@ -95,4 +95,4 @@ export function Login(props: LoginProps) {
   );
 }
 
-export default withApi(Login)
+export default withApi(Login);

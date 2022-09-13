@@ -1,4 +1,4 @@
-import { gql } from 'urql'
+import { gql } from 'urql';
 
 const SIGN_UP = gql`
   mutation Signup($args: SignupInput!) {
@@ -8,7 +8,7 @@ const SIGN_UP = gql`
       email
     }
   }
-`
+`;
 
 const LOGIN = gql`
   mutation Login($args: LoginInput!) {
@@ -18,4 +18,4 @@ const LOGIN = gql`
       email
     }
   }
-`
+`;

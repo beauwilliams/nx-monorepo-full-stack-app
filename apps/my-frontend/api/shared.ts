@@ -1,5 +1,5 @@
-import { CombinedError } from 'urql'
+import { CombinedError } from 'urql';
 
 export const isAuthError = (error?: CombinedError) => {
-  return error?.graphQLErrors.some((error) => error.message === 'Unauthorized')
-}
+  return error?.graphQLErrors.some((error) => error.message === 'Unauthorized');
+};
