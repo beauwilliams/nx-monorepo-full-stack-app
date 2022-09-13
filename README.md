@@ -534,6 +534,8 @@ Here we can confirm using the chrome dev tools that the graphql server is no lon
 
 ## Setup linting and enforce code style with eslint
 
+[See commit diff here](https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/2d8f4f94f8d97ce09f1ba2cb4bc506f574d799dd)
+
 We are going to use a [eslint rules library](https://github.com/sindresorhus/eslint-plugin-unicorn)
 
 the reason being is that we wish to start with sane defaults, enforce modern and up to date code styles
