@@ -42,9 +42,7 @@ export const SignupDocument = gql`
 `;
 
 export function useSignupMutation() {
-  return Urql.useMutation<SignupMutation, SignupMutationVariables>(
-    SignupDocument
-  );
+  return Urql.useMutation<SignupMutation, SignupMutationVariables>(SignupDocument);
 }
 export const LoginDocument = gql`
   mutation Login($args: LoginInput!) {

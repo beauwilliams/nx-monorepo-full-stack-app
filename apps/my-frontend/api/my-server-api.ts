@@ -1,9 +1,4 @@
-import {
-  createClient,
-  fetchExchange,
-  ssrExchange,
-  TypedDocumentNode,
-} from 'urql';
+import { createClient, fetchExchange, ssrExchange, TypedDocumentNode } from 'urql';
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import { DocumentNode } from 'graphql';
 import { SSRData } from '@urql/core/dist/types/exchanges/ssr';

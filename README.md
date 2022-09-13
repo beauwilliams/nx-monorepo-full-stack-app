@@ -532,7 +532,6 @@ Here we can confirm using the chrome dev tools that the graphql server is no lon
 
 ![With SSR](https://i.ibb.co/GF9wCMf/Screen-Shot-2022-09-13-at-11-52-15-am.png)
 
-
 ## Setup linting and enforce code style with eslint
 
 We are going to use a [eslint rules library](https://github.com/sindresorhus/eslint-plugin-unicorn)
@@ -590,7 +589,6 @@ Let's start by familisarising ourselves with available options [here](https://pr
 npx nx format:write --all
 npx nx run-many --target=lint --all
 ```
-
 
 ## Setup application logging and analytics services
 

@@ -1,7 +1,4 @@
-import {
-  GetUsersDocument,
-  useGetUsersQuery,
-} from '../../api/user/user.gql.gen';
+import { GetUsersDocument, useGetUsersQuery } from '../../api/user/user.gql.gen';
 import { withApi } from '../../api/my-client-api';
 import { GetServerSidePropsContext } from 'next';
 import { serverQuery } from '../../api/my-server-api';

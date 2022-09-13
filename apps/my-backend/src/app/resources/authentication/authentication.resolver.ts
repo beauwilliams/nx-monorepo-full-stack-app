@@ -13,10 +13,7 @@ export class AuthenticationResolver {
 
   @UseGuards(SetAuthGuard)
   @Mutation(() => User)
-  login(
-    @Args('loginInput') loginInput: LoginInput,
-    @Context() context: IUserContext
-  ) {
+  login(@Args('loginInput') loginInput: LoginInput, @Context() context: IUserContext) {
     const { user } = context;
 
     return this.authenticationService.login(user);

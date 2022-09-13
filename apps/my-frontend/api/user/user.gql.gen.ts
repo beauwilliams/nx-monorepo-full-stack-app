@@ -33,9 +33,7 @@ export const GetUserDocument = gql`
   }
 `;
 
-export function useGetUserQuery(
-  options: Omit<Urql.UseQueryArgs<GetUserQueryVariables>, 'query'>
-) {
+export function useGetUserQuery(options: Omit<Urql.UseQueryArgs<GetUserQueryVariables>, 'query'>) {
   return Urql.useQuery<GetUserQuery, GetUserQueryVariables>({
     query: GetUserDocument,
     ...options,

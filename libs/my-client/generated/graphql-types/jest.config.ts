@@ -12,6 +12,5 @@ export default {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory:
-    '../../../../coverage/libs/my-client/generated/graphql-types',
+  coverageDirectory: '../../../../coverage/libs/my-client/generated/graphql-types',
 };

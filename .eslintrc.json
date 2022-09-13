@@ -24,11 +24,7 @@
               },
               {
                 "sourceTag": "scope:my-frontend",
-                "onlyDependOnLibsWithTags": [
-                  "scope:shared",
-                  "scope:my-frontend",
-                  "scope:my-client"
-                ]
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:my-frontend", "scope:my-client"]
               },
               {
                 "sourceTag": "scope:my-backend",

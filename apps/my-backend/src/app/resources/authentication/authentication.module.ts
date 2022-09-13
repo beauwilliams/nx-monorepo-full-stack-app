@@ -15,11 +15,6 @@ import { JwtStrategy } from '../../guards/auth-guards/strategy/jwt.strategy';
       signOptions: { expiresIn: Number(process.env.JWT_EXPIRES_SECONDS) },
     }),
   ],
-  providers: [
-    AuthenticationResolver,
-    AuthenticationService,
-    LocalStrategy,
-    JwtStrategy,
-  ],
+  providers: [AuthenticationResolver, AuthenticationService, LocalStrategy, JwtStrategy],
 })
 export class AuthenticationModule {}
