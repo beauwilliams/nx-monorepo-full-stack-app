@@ -521,7 +521,7 @@ Implement cookies ....
 
 ![cookies](https://i.ibb.co/RDW94zQ/Screen-Shot-2022-09-07-at-11-18-41-pm.png)
 
-
+TODO
 
 Implement auth guards
 - npm i passport-jwt
@@ -536,16 +536,27 @@ Implement auth guards
 
 ## Setup Serverside rendering for graphql backend requests
 
+TODO
 
 Let's start by checking the dev tools under Network -> Fetch/XHR
 
 Here we can see the client side requests our app makes
 
-Notice that the graphql server is requested from the client side, this is going to slow our page loads!
+Notice that the graphql server is requested from the client side [fetch] , this is going to slow our page loads!
 
 ![No SSR](https://i.ibb.co/HFFNdwV/Screen-Shot-2022-09-09-at-10-48-55-am.png)
 
 Let's get to work implementing it...
+
+
+- create my-server-api to handle SSR
+- add get serverside props to /users
+- confirm its working in dev tools
+
+
+Here we can confirm using the chrome dev tools that the graphql server is no longer fetched from the client side.
+
+![With SSR](https://i.ibb.co/GF9wCMf/Screen-Shot-2022-09-13-at-11-52-15-am.png)
 
 
 

@@ -1,7 +1,16 @@
 import { GetUsersDocument, useGetUsersQuery } from '../../api/user/user.gql.gen'
 import { withApi } from '../../api/my-client-api'
+import { GetServerSidePropsContext } from 'next'
+import { serverQuery } from '../../api/my-server-api'
+
+
 /* eslint-disable-next-line */
 export interface UsersProps {}
+
+
+export const getServerSideProps = (context: GetServerSidePropsContext) => {
+  return serverQuery(GetUsersDocument, {}, context)
+}
 
 export function Users(props: UsersProps) {
   const [data] = useGetUsersQuery({ variables: {} })
