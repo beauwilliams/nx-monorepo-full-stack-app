@@ -532,6 +532,66 @@ Here we can confirm using the chrome dev tools that the graphql server is no lon
 
 ![With SSR](https://i.ibb.co/GF9wCMf/Screen-Shot-2022-09-13-at-11-52-15-am.png)
 
+
+## Setup linting and enforce code style with eslint
+
+We are going to use a [eslint rules library](https://github.com/sindresorhus/eslint-plugin-unicorn)
+
+the reason being is that we wish to start with sane defaults, enforce modern and up to date code styles
+
+Later on we can configure on a rule by rule basis as we desire
+
+### Install eslint deps
+
+```bash
+npm i --save-dev eslint eslint-plugin-unicorn eslint-plugin-prettier
+```
+
+### Configure eslint with our new plugins and rules [./.eslintrc.json]
+
+```json
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nrwl/nx", "unicorn", "prettier"],
+  "overrides": [
+    {
+      "extends": ["plugin:unicorn/recommended", "plugin:prettier/recommended"],
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "prettier/prettier": ["error"],
+        "unicorn/prevent-abbreviations": "warn",
+        "unicorn/no-null": "off",
+        "unicorn/prefer-module": ["warn"],
+        "unicorn/no-abusive-eslint-disable": ["warn"],
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+        ...rest-of-code...
+```
+
+### Configure prettier with our new rules [./prettierrc]
+
+Let's start by familisarising ourselves with available options [here](https://prettier.io/docs/en/options.html)
+
+```json
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": true,
+  "bracketSpacing": true,
+  "printWidth": 100
+}
+```
+
+### Run linters and formatters to test our new rules
+
+```bash
+npx nx format:write --all
+npx nx run-many --target=lint --all
+```
+
+
 ## Setup application logging and analytics services
 
 TODO
