@@ -77,6 +77,14 @@ graph-affected:
     @npx nx affected:graph
 lint $scope:
     @npm run lint $scope
+lint-all:
+    @npx nx run-many --target=lint --all
+test $scope:
+    @npm run test $scope
+test-all:
+    @npx nx run-many --target=test --all
+format $scope:
+    @npm run format $scope
 format-all:
     @npx nx format:write --all
 build:
