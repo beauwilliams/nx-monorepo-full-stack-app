@@ -32,7 +32,7 @@ export const Navbar = () => {
 
   return (
     <section>
-    <nav className="dark:bg-gray-900">
+    <nav className="dark:bg-gray-900 bg-gray-50">
       <div className="flex justify-evenly py-8 text-xl">
         {navLinks.map((link, index) => {
           return (

@@ -33,7 +33,7 @@ const ThemeToggler = () => {
       <select
         value={theme}
         onChange={(e) => setTheme(e.target.value)}
-        className="dark:bg-gray-900 dark:text-white rounded"
+        className="dark:text-white rounded dark:bg-gray-900 bg-gray-50"
       >
         <option value="system">System</option>
         <option value="dark">Dark</option>
