@@ -100,6 +100,9 @@ bundle-size-frontend:
 create-page-my-frontend *PAGE_NAME:
     @echo NOTE: Use --dry-run flag to see what will be created
     @npx nx g @nrwl/next:page --project=my-frontend --style=css --name={{PAGE_NAME}}
+create-component-my-frontend *COMPONENT_NAME:
+    @echo NOTE: Use --dry-run flag to see what will be created
+    @npx nx g @nrwl/next:component --project=my-frontend --style=css --name={{COMPONENT_NAME}}
 
 
 

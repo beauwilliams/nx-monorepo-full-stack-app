@@ -16,7 +16,6 @@ export function Login(props: LoginProps) {
   };
 
   return (
-    <>
       <section className="bg-gray-50 dark:bg-gray-900 h-screen">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <a
@@ -72,7 +71,7 @@ export function Login(props: LoginProps) {
 
                 <div className="flex justify-center items-center mt-6">
                   <button
-                    className={`w-full text-white bg-blue-700 hover:scale-105 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`}
+                    className={`w-full text-white bg-blue-700 hover:scale-95 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800`}
                   >
                     Login
                   </button>
@@ -91,7 +90,6 @@ export function Login(props: LoginProps) {
           </div>
         </div>
       </section>
-    </>
   );
 }
 
