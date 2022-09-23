@@ -34,7 +34,7 @@ export function Users(props: UsersProps) {
           >
             <img
               className="w-8 h-8 mr-2"
-              src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
+              src="https://img.icons8.com/color/48/000000/java-web-token.png"
               alt="logo"
             ></img>
             My Super Cool App
