@@ -36,7 +36,7 @@ export const Navbar = () => {
         {navLinks.map((link, index) => {
           return (
             <Link href={link.path} key={index}>
-              <a className='hover:text-black'>{link.name}</a>
+                <a className='hover:text-blue-800 dark:hover:text-blue-600'>{link.name}</a>
             </Link>
           );
         })}
