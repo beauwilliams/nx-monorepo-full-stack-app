@@ -2,23 +2,23 @@ import { useGetUserQuery } from '../api/user/user.gql.gen';
 import { withApi } from '../api/my-client-api';
 
 export function Index() {
-  const [{ data, fetching }] = useGetUserQuery({
-    variables: { args: { id: 1, email: 'test@mail.com' } },
-  });
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 h-screen">
-      <div className="container">
-        <div>
-          <h1 className="dark:text-white">
-            <span> Hello {fetching ? 'there' : data ? data?.user?.name : 'Jane'}</span>
-            <br></br>
-            Welcome my-frontend 👋
-          </h1>
-        </div>
-
+      <section className="bg-gray-50 dark:bg-gray-900">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
+          <a
+            href="#"
+            className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
+          >
+            <img
+              className="w-8 h-8 mr-2"
+              src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
+              alt="logo"
+            ></img>
+            My Super Cool App
+          </a>
       </div>
-    </section>
+          </section>
   );
 }
 

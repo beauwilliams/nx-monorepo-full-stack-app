@@ -1,4 +1,4 @@
-import { GetUsersDocument, useGetUsersQuery } from '../../api/user/user.gql.gen';
+import { GetUsersDocument, useGetUserQuery, useGetUsersQuery } from '../../api/user/user.gql.gen';
 import { withApi } from '../../api/my-client-api';
 import { GetServerSidePropsContext } from 'next';
 import { serverQuery } from '../../api/my-server-api';
@@ -13,10 +13,21 @@ export const getServerSideProps = (context: GetServerSidePropsContext) => {
 export function Users(props: UsersProps) {
   const [data] = useGetUsersQuery({ variables: {} });
 
+
+  //TODO: pass id of current user and display their name
+  const [{ data: cur_usr, fetching }] = useGetUserQuery({
+    variables: { args: { id: 1, email: 'test@mail.com' } },
+  });
+
+
   return (
-    <>
-      <section className="bg-gray-50 dark:bg-gray-900 h-screen">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <section className="bg-gray-50 dark:bg-gray-900">
+
+
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto">
+          <h1 className="dark:text-white text-2xl py-4">
+            <span> Hello {fetching ? 'there' : cur_usr ? cur_usr?.user?.name +' 👋 ': 'Jane'}</span>
+          </h1>
           <a
             href="#"
             className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
@@ -54,7 +65,6 @@ export function Users(props: UsersProps) {
           </div>
         </div>
       </section>
-    </>
   );
 }
 

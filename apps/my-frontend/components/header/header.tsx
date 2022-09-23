@@ -29,7 +29,6 @@
 export interface HeaderProps {}
 
 import Head from 'next/head';
-import Link from 'next/link';
 import Navbar from '../navbar/navbar';
 
 const Header = () => {

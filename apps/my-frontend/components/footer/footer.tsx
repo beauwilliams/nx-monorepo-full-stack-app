@@ -3,8 +3,8 @@ export interface FooterProps {}
 
 export function Footer(props: FooterProps) {
   return (
-    <div>
-      <h1>Welcome to Footer!</h1>
+    <div className='flex bg-gray-50 dark:bg-gray-900 justify-center items-center'>
+      <h1>Made with ❤️</h1>
     </div>
   );
 }

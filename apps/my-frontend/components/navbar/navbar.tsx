@@ -1,11 +1,10 @@
-import styles from './navbar.module.css';
+import Link from 'next/link';
+import { useState } from 'react';
+import ThemeToggler from '../../components/theme-toggler/theme-toggler';
 
 /* eslint-disable-next-line */
 export interface NavbarProps {}
 
-import Link from 'next/link';
-import { useState } from 'react';
-import ThemeToggler from '../../components/theme-toggler/theme-toggler';
 
 export const navLinks = [
   { name: 'Home', path: '/' },
@@ -24,15 +23,15 @@ export const navLinks = [
 ];
 
 export const Navbar = () => {
-  const [active, setActive] = useState(false);
 
+  const [active, setActive] = useState(false);
   const handleClick = () => {
     setActive(!active);
   };
 
   return (
     <section>
-    <nav className="dark:bg-gray-900 bg-gray-50">
+    <nav className="dark:bg-gray-900 bg-gray-50 z-0 ">
       <div className="flex justify-evenly py-8 text-xl">
         {navLinks.map((link, index) => {
           return (
