@@ -5,13 +5,14 @@ import { LocalStrategy } from '../../guards/auth-guards/strategy/local.strategy'
 import { JwtStrategy } from '../../guards/auth-guards/strategy/jwt.strategy';
 import { UserService } from '../user/user.service';
 import { DbService } from '@my-full-stack-app/my-backend/data-access-db';
+import { JwtService } from '@nestjs/jwt';
 
 describe('AuthenticationService', () => {
   let service: AuthenticationService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-  providers: [AuthenticationResolver, AuthenticationService, LocalStrategy, JwtStrategy, UserService, DbService],
+  providers: [AuthenticationResolver, AuthenticationService, LocalStrategy, JwtStrategy, UserService, DbService, JwtService],
     }).compile();
 
     service = module.get<AuthenticationService>(AuthenticationService);
