@@ -1,13 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AuthenticationResolver } from './authentication.resolver';
 import { AuthenticationService } from './authentication.service';
+import { AuthenticationResolver } from './authentication.resolver';
+import { LocalStrategy } from '../../guards/auth-guards/strategy/local.strategy';
+import { JwtStrategy } from '../../guards/auth-guards/strategy/jwt.strategy';
+import { UserService } from '../user/user.service';
+import { DbService } from '@my-full-stack-app/my-backend/data-access-db';
 
 describe('AuthenticationResolver', () => {
   let resolver: AuthenticationResolver;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [AuthenticationResolver, AuthenticationService],
+  providers: [AuthenticationResolver, AuthenticationService, LocalStrategy, JwtStrategy, UserService, DbService],
     }).compile();
 
     resolver = module.get<AuthenticationResolver>(AuthenticationResolver);
