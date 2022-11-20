@@ -105,6 +105,8 @@ create-component-my-frontend *COMPONENT_NAME:
     @npx nx g @nrwl/next:component --project=my-frontend --style=none --name={{COMPONENT_NAME}}
 benchmark-backend:
     npx autocannon local -c 100 -d 5 -p 10 http://localhost:3333/graphql
+nx-clear-cloud-runs-cache:
+    npx nx clear-cache
 
 
 

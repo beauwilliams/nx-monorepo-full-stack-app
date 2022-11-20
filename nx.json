@@ -16,7 +16,7 @@
       "runner": "@nrwl/nx-cloud",
       "options": {
         "cacheableOperations": ["build", "lint", "test", "e2e"],
-        "accessToken": "MjExNDZjMzktY2YyMS00YTUzLWJlMDYtMDVkZGMyYTA4MmIzfHJlYWQtd3JpdGU="
+        "accessToken": "YjMyMzI4MjUtZWNmNS00NWFmLThjNDktZTE0MTU3ZWU0Y2FkfHJlYWQtd3JpdGU="
       }
     }
   },
