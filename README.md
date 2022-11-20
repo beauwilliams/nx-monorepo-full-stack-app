@@ -767,6 +767,16 @@ Lets add a `console.log('Index page');` to the index.tsx of our frontend and try
 
 <img width="1440" alt="Screen Shot 2022-11-20 at 11 51 06 am" src="https://user-images.githubusercontent.com/7098556/202877594-f8203169-bd9b-4ec8-89c6-28bfe6a17bf6.png">
 
+## Benchmarking our API performance
+
+Let's start with a very simple benchmark, to set a baseline, pulling our our GraphQL playground route
+
+You can run this command directly on your CLI or add it to `justfile` and run it with `just benchmark-backend`
+
+```
+benchmark-backend:
+    npx autocannon local -c 100 -d 5 -p 10 http://localhost:3333/graphql
+```
 
 ## Application Architecture
 
