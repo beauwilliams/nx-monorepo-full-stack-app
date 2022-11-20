@@ -763,6 +763,11 @@ So with that said, lets add some code to a package, and see if the CI does run o
 
 Lets add a `console.log('Index page');` to the index.tsx of our frontend and try it out
 
+[Success!! We can see our frontend was tested only, not the other unchanged packages in our NX workspace](https://github.com/beauwilliams/nx-monorepo-full-stack-app/actions/runs/3505834061/jobs/5872424307)
+
+<img width="1440" alt="Screen Shot 2022-11-20 at 11 51 06 am" src="https://user-images.githubusercontent.com/7098556/202877594-f8203169-bd9b-4ec8-89c6-28bfe6a17bf6.png">
+
+
 ## Application Architecture
 
 ### Workspace
