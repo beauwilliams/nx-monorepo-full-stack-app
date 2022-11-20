@@ -705,11 +705,15 @@ Check that you have defined the scope tags properly in each library in your app,
 
 ## Setting up CICD with Github Actions
 
+
 ### Adding secrets to our GitHub repository for use in our actions
 
 Head to the repository settings and configure your secrets as seen in the example below.
 
 We will use a JWT_SECRET env var in our tests, so here we are setting it up.
+ 
+<img width="1312" alt="Screen Shot 2022-11-20 at 11 22 08 am" src="https://user-images.githubusercontent.com/7098556/202876978-c63e1dda-1c4a-4fc5-9c16-ce6aab4663e9.png">
+
 
 ### Creating the GitHub action
 
