@@ -780,11 +780,9 @@ benchmark-backend:
     npx autocannon local -c 100 -d 5 -p 10 http://localhost:3333/graphql
 ```
 
-**Success! Our API is serving up our GraphQL playground frontend at ~50KTPS. That is over 3x faster than ExpressJS maximum throughput!!
-
+\*\*Success! Our API is serving up our GraphQL playground frontend at ~50KTPS. That is over 3x faster than ExpressJS maximum throughput!!
 
 <img width="673" alt="Screen Shot 2022-11-20 at 12 01 16 pm" src="https://user-images.githubusercontent.com/7098556/202877850-b40307aa-f35f-427b-a5cd-cd4544a571d8.png">
-
 
 ## Application Architecture
 
