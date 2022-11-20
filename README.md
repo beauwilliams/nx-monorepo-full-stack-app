@@ -751,6 +751,17 @@ jobs:
       - run: npx nx affected --target=build --parallel=3
 ```
 
+### Checking our CI runs, and NX cloud runs cache feature with parallelisation
+
+If all is well, we should have a [successful run](https://github.com/beauwilliams/nx-monorepo-full-stack-app/actions/runs/3505798693/jobs/5872356960)
+
+But do take note, 0 packages were actually tested! Why? The NX cache noticed no code was changed since last commit.
+
+<img width="1485" alt="Screen Shot 2022-11-20 at 11 40 05 am" src="https://user-images.githubusercontent.com/7098556/202877366-d4f862aa-39d3-4e1b-93eb-f3e29f5b7558.png">
+
+So with that said, lets add some code to a package, and see if the CI does run on that package.
+
+
 ## Application Architecture
 
 ### Workspace
