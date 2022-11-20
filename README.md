@@ -763,7 +763,6 @@ So with that said, lets add some code to a package, and see if the CI does run o
 
 Lets add a `console.log('Index page');` to the index.tsx of our frontend and try it out
 
-
 ## Application Architecture
 
 ### Workspace
