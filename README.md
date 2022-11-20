@@ -702,6 +702,55 @@ error  A project without tags matching at least one constraint cannot depend on 
 
 Check that you have defined the scope tags properly in each library in your app, [like so](https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/f86a9b1cbb8bd33d1021c1af79e34a8bb1728298) [./project.json]
 
+
+## Setting up CICD with Github Actions
+
+### Adding secrets to our GitHub repository for use in our actions
+
+Head to the repository settings and configure your secrets as seen in the example below.
+
+We will use a JWT_SECRET env var in our tests, so here we are setting it up.
+
+### Creating the GitHub action
+
+Create a new .yaml file in `./.github/workflows/`
+
+
+Here we will create a `CI.yaml` as shown below
+
+
+Things to make note of:
+- The secrets we are injecting into the CI using Github action secrets
+- We have configured the CI to continue on lint errors for now instead of exiting
+
+```
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: nrwl/nx-set-shas@v3
+      - run: npm ci
+
+      - run: npx nx workspace-lint
+      - run: npx nx format:check
+      - run: npx nx affected --target=lint --parallel=3
+        continue-on-error: true
+      - run: npx nx affected --target=test --parallel=3 --ci --code-coverage
+        env:
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      - run: npx nx affected --target=build --parallel=3
+```
+
 ## Application Architecture
 
 ### Workspace
