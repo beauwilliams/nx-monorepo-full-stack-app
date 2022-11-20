@@ -773,6 +773,8 @@ Let's start with a very simple benchmark, to set a baseline, pulling our our Gra
 
 You can run this command directly on your CLI or add it to `justfile` and run it with `just benchmark-backend`
 
+NOTE: Ensure the backend is running before benchmarking it
+
 ```
 benchmark-backend:
     npx autocannon local -c 100 -d 5 -p 10 http://localhost:3333/graphql

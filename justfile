@@ -103,6 +103,9 @@ create-page-my-frontend *PAGE_NAME:
 create-component-my-frontend *COMPONENT_NAME:
     @echo NOTE: Use --dry-run flag to see what will be created
     @npx nx g @nrwl/next:component --project=my-frontend --style=none --name={{COMPONENT_NAME}}
+benchmark-backend:
+    npx autocannon local -c 100 -d 5 -p 10 http://localhost:3333/graphql
+
 
 
 
