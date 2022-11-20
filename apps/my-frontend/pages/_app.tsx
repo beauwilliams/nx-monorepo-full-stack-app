@@ -1,5 +1,5 @@
 import Layout from '../components/layout/layout';
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 import { ThemeProvider } from 'next-themes';
 import './styles.css';
@@ -10,11 +10,11 @@ import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 
 type NextPageWithLayout = NextPage & {
-    getLayout?: (page: ReactElement) => ReactNode;
+  getLayout?: (page: ReactElement) => ReactNode;
 };
 
 type AppPropsWithLayout = AppProps & {
-    Component: NextPageWithLayout;
+  Component: NextPageWithLayout;
 };
 function CustomApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>);

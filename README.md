@@ -702,7 +702,6 @@ error  A project without tags matching at least one constraint cannot depend on 
 
 Check that you have defined the scope tags properly in each library in your app, [like so](https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/f86a9b1cbb8bd33d1021c1af79e34a8bb1728298) [./project.json]
 
-
 ## Setting up CICD with Github Actions
 
 
@@ -719,11 +718,10 @@ We will use a JWT_SECRET env var in our tests, so here we are setting it up.
 
 Create a new .yaml file in `./.github/workflows/`
 
-
 Here we will create a `CI.yaml` as shown below
 
-
 Things to make note of:
+
 - The secrets we are injecting into the CI using Github action secrets
 - We have configured the CI to continue on lint errors for now instead of exiting
 
