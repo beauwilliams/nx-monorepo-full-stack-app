@@ -2,6 +2,7 @@ import { useGetUserQuery } from '../api/user/user.gql.gen';
 import { withApi } from '../api/my-client-api';
 
 export function Index() {
+  console.log('Index page');
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
