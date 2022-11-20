@@ -767,6 +767,14 @@ Lets add a `console.log('Index page');` to the index.tsx of our frontend and try
 
 <img width="1440" alt="Screen Shot 2022-11-20 at 11 51 06 am" src="https://user-images.githubusercontent.com/7098556/202877594-f8203169-bd9b-4ec8-89c6-28bfe6a17bf6.png">
 
+### Enabling NX Cloud runs github integration
+
+Ensure `@nrwl/nx-cloud` is in `package.json`
+
+Then run `nx g @nrwl/nx-cloud:init`
+
+And follow the instructions, once setup, you should see NX bot in your Pull Requests make a comment with the status of the runs/builds etc
+
 ## Benchmarking our API performance
 
 Let's start with a very simple benchmark, to set a baseline, pulling our our GraphQL playground route
