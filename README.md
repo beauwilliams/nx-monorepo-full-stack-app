@@ -27,7 +27,7 @@ A backend workspace with:
 - Docker-compose for db migrations
 - Prisma database ORM to handle migrations, view database in web browser and more etc
 - Auto-generated graphql endpoints with validation via prisma
-- Fastify server instead of express for speed
+- Fastify server instead of express for speed (Over 3x faster than expressJS @ 50KTPS+)
 - Mercurius, a graphql adapter for fastify
 - Basic CORS support using fastify builtin
 - Sane http header security policy defaults via helmet, auto-disabled in dev mode
@@ -779,6 +779,12 @@ NOTE: Ensure the backend is running before benchmarking it
 benchmark-backend:
     npx autocannon local -c 100 -d 5 -p 10 http://localhost:3333/graphql
 ```
+
+**Success! Our API is serving up our GraphQL playground frontend at ~50KTPS. That is over 3x faster than ExpressJS maximum throughput!!
+
+
+<img width="673" alt="Screen Shot 2022-11-20 at 12 01 16 pm" src="https://user-images.githubusercontent.com/7098556/202877850-b40307aa-f35f-427b-a5cd-cd4544a571d8.png">
+
 
 ## Application Architecture
 
