@@ -1,0 +1,9 @@
+# Add files here to ignore them from prettier formatting
+
+/dist
+/coverage
+
+#GQL Code gen outputs
+/libs/my-backend/generated/db-types/src/index.ts
+/libs/my-client/generated/graphql-types/src/lib/my-client-generated-graphql-types.ts
+*.gql.gen.ts

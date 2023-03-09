@@ -796,6 +796,12 @@ benchmark-backend:
 
 <img width="673" alt="Screen Shot 2022-11-20 at 12 01 16 pm" src="https://user-images.githubusercontent.com/7098556/202877850-b40307aa-f35f-427b-a5cd-cd4544a571d8.png">
 
+### Setting up code formatting to ignore auto-generated code
+
+- Create an `.eslintignore`
+- List the files and folders to ignore i.e
+- Add files here to ignore them from prettier formatting `*.gql.gen.ts`
+
 ## Application Architecture
 
 ### Workspace
