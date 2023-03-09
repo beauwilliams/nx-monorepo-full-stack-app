@@ -1,4 +1,4 @@
-import { createClient, fetchExchange, ssrExchange, TypedDocumentNode } from 'urql';
+import { AnyVariables, createClient, fetchExchange, ssrExchange, TypedDocumentNode } from 'urql';
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import { DocumentNode } from 'graphql';
 import { SSRData } from '@urql/core/dist/types/exchanges/ssr';
@@ -20,13 +20,13 @@ export async function serverQuery<
   const cookie = context.req.headers.cookie;
   const serverClient = createClient({
     url: `http://${process.env.API_HOST}:3333/graphql`,
-    fetchOptions: { headers: { cookie } },
+    fetchOptions: { headers: { cookie } as HeadersInit },
     exchanges: [ssrCache, fetchExchange],
   });
 
   try {
     const { error } = await serverClient
-      .query<SsrQuery<QueryResult, Variables>, Variables>(query, variables)
+      .query<SsrQuery<QueryResult, Variables>, AnyVariables>(query, variables as AnyVariables)
       .toPromise();
 
     if (!error) return { props: { urqlState: ssrCache.extractData() } };
