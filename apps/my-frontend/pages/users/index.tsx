@@ -1,4 +1,4 @@
-import { GetUsersDocument, useGetUserQuery, useGetUsersQuery } from '../../api/user/user.gql.gen';
+import { GetUserDocument, GetUsersDocument, useGetUserQuery, useGetUsersQuery } from '../../api/user/user.gql.gen';
 import { withApi } from '../../api/my-client-api';
 import { GetServerSidePropsContext } from 'next';
 import { serverQuery } from '../../api/my-server-api';
@@ -6,23 +6,23 @@ import { serverQuery } from '../../api/my-server-api';
 /* eslint-disable-next-line */
 export interface UsersProps {}
 
-export const getServerSideProps = (context: GetServerSidePropsContext) => {
-  return serverQuery(GetUsersDocument, {}, context);
+  //FIXME: return two props in one call for SSR and confirm no 200 requests in network tab to API
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  // const cur_user = serverQuery(GetUserDocument, {}, context);
+  const cur_users = await serverQuery(GetUsersDocument, {}, context);
+  return cur_users;
 };
 
-export function Users(props: UsersProps) {
-  const [data] = useGetUsersQuery({ variables: {} });
 
-  //TODO: pass id of current user and display their name
-  const [{ data: cur_usr, fetching }] = useGetUserQuery({
-    variables: { args: { id: 1, email: 'test@mail.com' } },
-  });
+export function Users(props: UsersProps) {
+  const [{ data: cur_user, fetching: fetching_user }] = useGetUserQuery();
+  const [{ data: cur_users, fetching: fetching_users }] = useGetUsersQuery();
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto">
         <h1 className="dark:text-white text-2xl py-4">
-          <span> Hello {fetching ? 'there' : cur_usr ? cur_usr?.user?.name + ' 👋 ' : 'Jane'}</span>
+          <span> Hello {fetching_user ? 'there' : cur_user ? cur_user?.user?.name + ' 👋 ' : 'Jane'}</span>
         </h1>
         <a
           href="#"
@@ -42,7 +42,7 @@ export function Users(props: UsersProps) {
                 Users
               </h1>
               <hr className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" />
-              {data?.data?.users.map((user) => (
+              {cur_users?.users.map((user) => (
                 <div key={user.id}>
                   <p className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Name: {user.name}
