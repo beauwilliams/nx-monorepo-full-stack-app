@@ -71,6 +71,13 @@ database-generate:
     @npm run db:create-client
 generate-graphql:
     @npm run gen:gql
+generate-all:
+    @echo Migrating new database
+    @npm run db:dev-migrate
+    @echo Running prisma generate to gen db types from db schema for use with graphQL
+    @npm run db:create-client
+    @echo Generate gql hooks..
+    @npm run gen:gql
 graph:
     @npx nx graph
 graph-affected:
@@ -103,6 +110,9 @@ create-page-my-frontend *PAGE_NAME:
 create-component-my-frontend *COMPONENT_NAME:
     @echo NOTE: Use --dry-run flag to see what will be created
     @npx nx g @nrwl/next:component --project=my-frontend --style=none --name={{COMPONENT_NAME}}
+create-node-library-my-backend *NODE_LIB_NAME:
+    @echo NOTE: Use --dry-run flag to see what will be created
+    @npx nx g @nrwl/workspace:library --project=my-backend --name={{NODE_LIB_NAME}} --dry-run
 benchmark-backend:
     npx autocannon local -c 100 -d 5 -p 10 http://localhost:3333/graphql
 nx-clear-cloud-runs-cache:
