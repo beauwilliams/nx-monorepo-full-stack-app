@@ -445,6 +445,10 @@ npx nx run my-frontend:export
 
 ## Setting up Authentication
 
+
+*NOTE: gql query createUser, does not encrypt password, its for admin use if anything. FYI. Auth not work when made that way.. use signupInput gql query instead*
+
+
 ### Create lib
 
 ```bash
@@ -461,12 +465,24 @@ mutation {
 }
 ```
 
+### [Implementing auth guards and securing auth](https://github.com/beauwilliams/nx-monorepo-full-stack-app/tree/main/apps/my-backend/src/app/guards/auth-guards)
+
+*Summary*
 - Add libraries
 - Add jwt modules etc to .module files
 - Add validation logic
 - Add guards
 - Add local strategy
 - Test query to confirm its all working
+
+*Commits*
+- Using passport -> `npm i passport-jwt`
+- [Implementing our own jwt strategies](https://github.com/beauwilliams/nx-monorepo-full-stack-app/tree/main/apps/my-backend/src/app/guards/auth-guards/strategy)
+- [Create our set and verify auth guards logic](https://github.com/beauwilliams/nx-monorepo-full-stack-app/tree/main/apps/my-backend/src/app/guards/auth-guards)
+- [Add guard decorators to routes](https://github.com/beauwilliams/nx-monorepo-full-stack-app/blob/main/apps/my-backend/src/app/resources/user/user.resolver.ts)
+- [make cookies secure](https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/ef2461d4dd25be3143c6ec3b07dadc3f80b7f970)
+- [add CSRF protection to cookies](https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/6844644512f239dafa75780901bb1e50a9fea1ba)
+- read best practises: https://www.rfc-editor.org/rfc/rfc8725.html
 
 ```graphql
 mutation {
@@ -499,16 +515,7 @@ Implement cookies ....
 
 ![cookies](https://i.ibb.co/RDW94zQ/Screen-Shot-2022-09-07-at-11-18-41-pm.png)
 
-TODO
 
-Implement auth guards
-
-- npm i passport-jwt
-- jwt strategy
-- verify auth guards
-- add guard decorators to routes
-- read best practises: https://www.rfc-editor.org/rfc/rfc8725.html
-- add note on gql query createUser, does not encrypt password, its for admin use if anything. FYI. Auth not work when made that way.. use signupInput gql query instead
 
 ## Setup Serverside rendering (SSR) for graphql backend requests
 
