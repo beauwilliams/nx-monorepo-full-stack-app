@@ -8,15 +8,18 @@ import {
 } from '@my-full-stack-app/my-backend/generated/db-types';
 import { UseGuards } from '@nestjs/common';
 import { CheckAuthGuard } from '../../guards/auth-guards/verify-auth.guards';
+import { CurrentUser } from './user.decorator';
 
 @Resolver(() => User)
 export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
+  //NOTE: We unwrap the user ID from the JWT cookie token payload passed in the headers from client
   @UseGuards(CheckAuthGuard)
   @Query(() => User)
-  user(@Args() findUserArgs: FindUniqueUserArgs) {
-    return this.userService.findOne(findUserArgs);
+  user(@CurrentUser() user: User) {
+    const query = { where: { id: user.id } };
+    return this.userService.findOne(query);
   }
 
   @UseGuards(CheckAuthGuard)
