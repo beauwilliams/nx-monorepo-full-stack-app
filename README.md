@@ -510,23 +510,25 @@ Implement auth guards
 - read best practises: https://www.rfc-editor.org/rfc/rfc8725.html
 - add note on gql query createUser, does not encrypt password, its for admin use if anything. FYI. Auth not work when made that way.. use signupInput gql query instead
 
-## Setup Serverside rendering for graphql backend requests
+## Setup Serverside rendering (SSR) for graphql backend requests
 
-TODO
 
-Let's start by checking the dev tools under Network -> Fetch/XHR
+1. Let's start by checking the dev tools under Network -> Fetch/XHR
 
-Here we can see the client side requests our app makes
+2. Here we can see the client side requests our app makes
 
-Notice that the graphql server is requested from the client side [fetch] , this is going to slow our page loads!
+3. Notice that the graphql server is requested from the client side [fetch] , this is going to slow our page loads!
 
 ![No SSR](https://i.ibb.co/HFFNdwV/Screen-Shot-2022-09-09-at-10-48-55-am.png)
 
 Let's get to work implementing it...
 
-- create my-server-api to handle SSR
-- add get serverside props to /users
-- confirm its working in dev tools
+- create my-server-api to handle SSR -> [example of my-server-api.ts](https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/fc624efad0bbf46d0fc1bfa77346fabfd768833e)
+
+- add get serverside props to /users -> [example commit implementing SSR on frontend](https://github.com/beauwilliams/nx-monorepo-full-stack-app/commit/8a026e2cc2f8173bec7abc43f9132a59a246c080)
+
+- confirm its working in dev tools as above in network tab. No more 200 request to Graphql
+
 
 Here we can confirm using the chrome dev tools that the graphql server is no longer fetched from the client side.
 
@@ -937,4 +939,4 @@ Nx Cloud pairs with Nx in order to enable you to build and test code more rapidl
 
 Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
 
-Visit [Nx Cloud](https://nx.app/) to learn more.
+Visit [Nx Cloud](https://nx.app/) to learn more.rea
