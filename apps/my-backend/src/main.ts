@@ -8,6 +8,7 @@ import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import type { FastifyCookieOptions } from '@fastify/cookie';
 import fastifyRateLimit from '@fastify/rate-limit';
+import fastifyCsrf from '@fastify/csrf-protection';
 import cookie from '@fastify/cookie';
 import helmet from 'helmet';
 
@@ -54,6 +55,9 @@ async function bootstrap() {
     secret: process.env.MY_COOKIE_KEY,
     parseOptions: {},
   } as FastifyCookieOptions);
+
+  //@dev: SECURITY -> CSRF Protection for JWT auth -> https://docs.nestjs.com/security/csrf
+  await app.register(fastifyCsrf);
 
   //NOTE: This is not production grade CORS setup yet
   app.enableCors({
