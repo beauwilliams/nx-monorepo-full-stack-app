@@ -11,6 +11,7 @@ const HTTP_ONLY_COOKIE: CookieSerializeOptions = {
   maxAge: Number(jwtExpiresSecond), // cookie lives same amount of time as jwt
   httpOnly: true,
   signed: true,
+  secure: true,
   domain,
 };
 
